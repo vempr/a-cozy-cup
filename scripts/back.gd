@@ -2,6 +2,7 @@ extends Node2D
 
 signal heads_up(opt: G.INTERACTABLE)
 signal heads_down
+signal order_finished
 
 const CUPHOLDER_POSITION := Vector2(960, 933)
 const MILK_POSITION := Vector2(1380, 890)
@@ -25,6 +26,9 @@ func _ready() -> void:
 	%CupOutline.visible = true
 	milk.visible = true
 	whipped_cream.visible = true
+	
+	%Interaction.visible = false
+	%HUD.visible = false
 
 
 func _process(_delta: float) -> void:
@@ -41,6 +45,11 @@ func _process(_delta: float) -> void:
 			whipped_cream.position = get_global_mouse_position()
 		elif S.holding == G.HOLD.STRAW:
 			straw.position = get_global_mouse_position()
+
+
+func _on_game_switch_to_back() -> void:
+	%Interaction.visible = true
+	%HUD.visible = true
 
 
 func reset_all_holdables() -> void:
@@ -310,3 +319,15 @@ func _on_ap_cocoa_animation_finished(anim_name: StringName) -> void:
 			%CocoaCup.visible = true
 			%MilkCup.visible = false
 			%EmptyCup.visible = false
+
+
+func _on_done_button_pressed() -> void:
+	%Interaction.visible = false
+	
+	var tween = create_tween()
+	tween.parallel().tween_property(%HeadsUp, "modulate:a", 0.0, 0.4)
+	tween.parallel().tween_property(%DoneButton, "modulate:a", 0.0, 0.4)
+	order_finished.emit()
+	
+	await tween.finished
+	%HUD.visible = false

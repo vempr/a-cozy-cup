@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cx1xbmf7708wb"]
+[gd_scene load_steps=40 format=3 uid="uid://cx1xbmf7708wb"]
 
 [ext_resource type="Texture2D" uid="uid://0tngnis6nl6r" path="res://assets/aseprite/back.png" id="1_rvrcs"]
 [ext_resource type="Script" uid="uid://b5p34f2j7xf2u" path="res://scripts/back.gd" id="1_teux4"]
@@ -7,8 +7,11 @@
 [ext_resource type="FontFile" uid="uid://jpmb4gqr3436" path="res://assets/Early GameBoy.ttf" id="3_c3t4g"]
 [ext_resource type="Texture2D" uid="uid://ci5bkypa8bfkj" path="res://assets/aseprite/milk.png" id="3_ep5l4"]
 [ext_resource type="Texture2D" uid="uid://cklen7elpvnt7" path="res://assets/aseprite/cups/cocoa-milk.png" id="4_md8u1"]
+[ext_resource type="StyleBox" uid="uid://cjui3plpysm46" path="res://styles/button_normal.tres" id="4_or545"]
 [ext_resource type="Texture2D" uid="uid://cqkqkndaapce0" path="res://assets/aseprite/whipping_cream.png" id="4_ri4s6"]
+[ext_resource type="StyleBox" uid="uid://bxtlv1adhi7sb" path="res://styles/button_pressed.tres" id="5_o0u3r"]
 [ext_resource type="Texture2D" uid="uid://bol4s4v6n3s6t" path="res://assets/aseprite/cups/cocoa.png" id="5_ri4s6"]
+[ext_resource type="StyleBox" uid="uid://d20xs8mpcu1ca" path="res://styles/button_hover.tres" id="6_1tg5u"]
 [ext_resource type="Texture2D" uid="uid://bnka68mc45yas" path="res://assets/aseprite/cups/marshmellows.png" id="6_pq8vc"]
 [ext_resource type="Texture2D" uid="uid://co7n61a7kk8o2" path="res://assets/aseprite/cups/milk.png" id="7_teux4"]
 [ext_resource type="Texture2D" uid="uid://bkqt5qyrhc8ka" path="res://assets/aseprite/cups/straw.png" id="8_34pm6"]
@@ -23,6 +26,8 @@ expand_margin_left = 15.0
 expand_margin_top = 10.0
 shadow_color = Color(0, 0, 0, 0.43137255)
 shadow_size = 14
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uos8l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34pm6"]
 atlas = ExtResource("11_teux4")
@@ -303,7 +308,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(38, 103)]
+"values": [Vector2(38, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uos8l"]
@@ -316,6 +321,7 @@ _data = {
 script = ExtResource("1_teux4")
 
 [node name="Interaction" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
 [node name="Cups" type="Button" parent="Interaction"]
 modulate = Color(1, 1, 1, 0)
@@ -367,6 +373,7 @@ offset_right = 1878.0
 offset_bottom = 1047.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_mkwx5")
 
 [node name="HeadsUp" type="Label" parent="HUD"]
@@ -380,6 +387,25 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_22mct")
 text = "The humble cup. Your trusty vessel for chocolatey goodness."
 autowrap_mode = 2
+
+[node name="DoneButton" type="Button" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 19.0
+offset_right = 243.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_c3t4g")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("4_or545")
+theme_override_styles/pressed = ExtResource("5_o0u3r")
+theme_override_styles/hover = ExtResource("6_1tg5u")
+theme_override_styles/hover_pressed = ExtResource("5_o0u3r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uos8l")
+text = "Done?"
 
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
@@ -458,7 +484,7 @@ z_index = 2
 offset_left = 593.0
 offset_top = 744.0
 offset_right = 631.0
-offset_bottom = 847.0
+offset_bottom = 744.0
 color = Color(0.25882354, 0.14509805, 0.13725491, 1)
 
 [node name="Cupholder" type="Sprite2D" parent="."]
@@ -632,6 +658,7 @@ libraries = {
 [connection signal="mouse_entered" from="Interaction/Marshmellows" to="." method="_on_marshmellows_mouse_entered"]
 [connection signal="mouse_exited" from="Interaction/Marshmellows" to="." method="_on_marshmellows_mouse_exited"]
 [connection signal="pressed" from="Interaction/Marshmellows" to="." method="_on_marshmellows_pressed"]
+[connection signal="pressed" from="HUD/DoneButton" to="." method="_on_done_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayers/APWhippedCream" to="." method="_on_ap_whipped_cream_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayers/APMilk" to="." method="_on_ap_milk_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayers/APCocoa" to="." method="_on_ap_cocoa_animation_finished"]

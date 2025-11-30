@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://bpd888qe20qut"]
+[gd_scene load_steps=38 format=3 uid="uid://bpd888qe20qut"]
 
 [ext_resource type="Texture2D" uid="uid://biaw4tamn71cm" path="res://assets/aseprite/front.png" id="1_1p0m3"]
+[ext_resource type="Script" uid="uid://drq35ubp80m3j" path="res://scripts/front.gd" id="1_mnnjc"]
 [ext_resource type="Texture2D" uid="uid://dquo74fpsdqr0" path="res://assets/aseprite/front_counter.png" id="2_dmhun"]
 [ext_resource type="Texture2D" uid="uid://xdux0jpawg57" path="res://assets/aseprite/characters/alph.png" id="2_nay5q"]
 [ext_resource type="Texture2D" uid="uid://boilpmw7wvgqw" path="res://assets/aseprite/characters/balloon_boy.png" id="3_dmhun"]
@@ -25,6 +26,12 @@
 [ext_resource type="Texture2D" uid="uid://ebwj4r5bui6w" path="res://assets/aseprite/characters/sitting/sunnie_sitting.png" id="23_kjunq"]
 [ext_resource type="Texture2D" uid="uid://ws3hxo6fh4id" path="res://assets/aseprite/characters/sitting/tree_vi_sitting.png" id="24_nuq7c"]
 [ext_resource type="Texture2D" uid="uid://bol4s4v6n3s6t" path="res://assets/aseprite/cups/cocoa.png" id="25_xr2if"]
+[ext_resource type="Texture2D" uid="uid://cy2jgtcbcofqt" path="res://assets/aseprite/cups/whipped_cream.png" id="27_53dvo"]
+[ext_resource type="Texture2D" uid="uid://cklen7elpvnt7" path="res://assets/aseprite/cups/cocoa-milk.png" id="27_nuq7c"]
+[ext_resource type="Texture2D" uid="uid://bnka68mc45yas" path="res://assets/aseprite/cups/marshmellows.png" id="28_53dvo"]
+[ext_resource type="Texture2D" uid="uid://co7n61a7kk8o2" path="res://assets/aseprite/cups/milk.png" id="29_ne8vl"]
+[ext_resource type="Texture2D" uid="uid://bkqt5qyrhc8ka" path="res://assets/aseprite/cups/straw.png" id="30_ryxkl"]
+[ext_resource type="Texture2D" uid="uid://0fswf4c034de" path="res://assets/aseprite/cup.png" id="31_1nwwk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7va4"]
 bg_color = Color(0, 0, 0, 0.5882353)
@@ -35,12 +42,84 @@ shadow_size = 14
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cso2b"]
 
+[sub_resource type="Animation" id="Animation_nuq7c"]
+resource_name = "zoom_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Cup:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Cup:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(960, 914), Vector2(960, 783)]
+}
+
+[sub_resource type="Animation" id="Animation_53dvo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Cup:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Cup:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(960, 783)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne8vl"]
+_data = {
+&"RESET": SubResource("Animation_53dvo"),
+&"zoom_out": SubResource("Animation_nuq7c")
+}
+
 [node name="Front" type="Node2D"]
+script = ExtResource("1_mnnjc")
+
+[node name="Interaction" type="CanvasLayer" parent="."]
+
+[node name="CounterCup" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 637.0
+offset_top = 873.0
+offset_right = 1283.0
+offset_bottom = 1065.0
 
 [node name="Dialog" type="CanvasLayer" parent="."]
-visible = false
+unique_name_in_owner = true
 
-[node name="Label" type="Label" parent="Dialog"]
+[node name="Order" type="Label" parent="Dialog"]
+unique_name_in_owner = true
 offset_left = 1272.0
 offset_top = 378.0
 offset_right = 1798.0
@@ -51,7 +130,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_u7va4")
 text = "One hot chocolate supreme please! and please give me a straw-without it i can't stop myself from drinking the whole thing in one go.."
 autowrap_mode = 2
 
-[node name="Button" type="Button" parent="Dialog"]
+[node name="StartButton" type="Button" parent="Dialog"]
+unique_name_in_owner = true
 offset_left = 1274.0
 offset_top = 549.0
 offset_right = 1781.0
@@ -77,6 +157,14 @@ scale = Vector2(3, 3)
 texture = ExtResource("2_dmhun")
 region_enabled = true
 region_rect = Rect2(0, 212.51346, 640, 147.48654)
+
+[node name="CounterCupOutline" type="Line2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+z_index = 1
+points = PackedVector2Array(642, 878, 1278, 878, 1278, 1060, 642, 1060)
+closed = true
+joint_mode = 2
 
 [node name="Characters" type="Node2D" parent="."]
 
@@ -512,3 +600,88 @@ position = Vector2(1532, 345)
 texture = ExtResource("25_xr2if")
 region_enabled = true
 region_rect = Rect2(17.66935, 280.89996, 60.120285, 69.78302)
+
+[node name="Cup" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(960, 783)
+metadata/_edit_group_ = true
+
+[node name="CupCream" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+position = Vector2(0, -116)
+scale = Vector2(3, 3)
+texture = ExtResource("27_53dvo")
+region_enabled = true
+region_rect = Rect2(23.188787, 261.4333, 48.51229, 33.106384)
+
+[node name="CocoaMilkCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-1.5, -3)
+scale = Vector2(3, 3)
+texture = ExtResource("27_nuq7c")
+region_enabled = true
+region_rect = Rect2(17.86322, 281.00992, 59.239822, 70.03403)
+
+[node name="CocoaCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-1.5, -3)
+scale = Vector2(3, 3)
+texture = ExtResource("25_xr2if")
+region_enabled = true
+region_rect = Rect2(18.312984, 280.93317, 58.46964, 69.71512)
+
+[node name="CupMarshmellows" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+position = Vector2(-1.500061, -89.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("28_53dvo")
+region_enabled = true
+region_rect = Rect2(22.40881, 279.21826, 52.383503, 14.552277)
+
+[node name="MilkCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-1.500061, -2.000061)
+scale = Vector2(3, 3)
+texture = ExtResource("29_ne8vl")
+region_enabled = true
+region_rect = Rect2(17.9404, 280.7751, 58.733673, 70.269135)
+
+[node name="CupStraw" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+position = Vector2(38.49994, -117.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("30_ryxkl")
+region_enabled = true
+region_rect = Rect2(54.066704, 262.98627, 16.053604, 29.877563)
+
+[node name="EmptyCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+position = Vector2(-0.5, -3)
+scale = Vector2(3, 3)
+texture = ExtResource("31_1nwwk")
+region_enabled = true
+region_rect = Rect2(18.065962, 281.59436, 59.165627, 69.38052)
+
+[node name="AnimationPlayers" type="Node" parent="."]
+
+[node name="APCup" type="AnimationPlayer" parent="AnimationPlayers"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ne8vl")
+}
+
+[connection signal="mouse_entered" from="Interaction/CounterCup" to="." method="_on_counter_cup_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/CounterCup" to="." method="_on_counter_cup_mouse_exited"]
+[connection signal="pressed" from="Interaction/CounterCup" to="." method="_on_counter_cup_pressed"]
+[connection signal="pressed" from="Dialog/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayers/APCup" to="." method="_on_ap_cup_animation_finished"]

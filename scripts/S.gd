@@ -16,3 +16,7 @@ func add_to_cup(opt: G.OPTION) -> bool:
 		cup.append(opt)
 		return true
 	return false
+
+
+func access_cup() -> void:
+	print("to be made")

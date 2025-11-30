@@ -1,13 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://buhrf2hfo6h8m"]
+[gd_scene load_steps=8 format=3 uid="uid://buhrf2hfo6h8m"]
 
 [ext_resource type="Script" uid="uid://b8byecqdgu2qt" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bpd888qe20qut" path="res://scenes/front.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cx1xbmf7708wb" path="res://scenes/back.tscn" id="3_lnu2h"]
 
+[sub_resource type="Animation" id="Animation_lbhrr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Front:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lnu2h"]
+resource_name = "away"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Front:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1920, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iywne"]
+resource_name = "back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Front:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1920, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iywne"]
+_data = {
+&"RESET": SubResource("Animation_lbhrr"),
+&"away": SubResource("Animation_lnu2h"),
+&"back": SubResource("Animation_iywne")
+}
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uwrxv")
 
 [node name="Front" parent="." instance=ExtResource("2_yqjtg")]
+unique_name_in_owner = true
+z_index = 10
 
 [node name="Back" parent="." instance=ExtResource("3_lnu2h")]
-visible = false
+unique_name_in_owner = true
+
+[node name="GameAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_iywne")
+}
+
+[connection signal="switch_to_back" from="." to="Back" method="_on_game_switch_to_back"]
+[connection signal="switch_to_front" from="." to="Front" method="_on_game_switch_to_front"]
+[connection signal="start_order" from="Front" to="." method="_on_front_start_order"]
+[connection signal="order_finished" from="Back" to="." method="_on_back_order_finished"]
+[connection signal="animation_finished" from="GameAnimationPlayer" to="." method="_on_game_animation_player_animation_finished"]
