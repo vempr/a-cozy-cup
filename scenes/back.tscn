@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cx1xbmf7708wb"]
+[gd_scene load_steps=33 format=3 uid="uid://cx1xbmf7708wb"]
 
 [ext_resource type="Texture2D" uid="uid://0tngnis6nl6r" path="res://assets/aseprite/back.png" id="1_rvrcs"]
 [ext_resource type="Script" uid="uid://b5p34f2j7xf2u" path="res://scripts/back.gd" id="1_teux4"]
@@ -62,8 +62,246 @@ animations = [{
 }],
 "loop": false,
 "name": &"fill",
-"speed": 5.0
+"speed": 6.0
 }]
+
+[sub_resource type="Animation" id="Animation_rro74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%WhippedCream:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("%WhippedCream:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1222, 857)]
+}
+
+[sub_resource type="Animation" id="Animation_mkwx5"]
+resource_name = "apply"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%WhippedCream:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.6179938]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%WhippedCream:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35, 0.55, 0.7, 0.85, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1053, 693), Vector2(1098, 689), Vector2(1013, 683), Vector2(1065, 684), Vector2(1095, 685), Vector2(1002, 670), Vector2(1053, 645)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c3t4g"]
+_data = {
+&"RESET": SubResource("Animation_rro74"),
+&"apply": SubResource("Animation_mkwx5")
+}
+
+[sub_resource type="Animation" id="Animation_c3t4g"]
+resource_name = "pour"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Milk:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.7453293]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Milk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1071.9999, 734.99994)]
+}
+
+[sub_resource type="Animation" id="Animation_22mct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Milk:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("%Milk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1071.9999, 734.99994)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Milk/ColorRect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 23.885864)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Milk/ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.61, -134.017)]
+}
+
+[sub_resource type="Animation" id="Animation_0h87k"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Milk/ColorRect:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1e-05, 1, 1),
+"update": 0,
+"values": [Vector2(0, 23.885864), Vector2(105, 23.886), Vector2(105, 23.886), Vector2(0, 23.885864)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Milk/ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1.23, -110.242)]
+}
+
+[sub_resource type="Animation" id="Animation_or545"]
+resource_name = "unpour"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Milk:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.7453293, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Milk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1071.9999, 734.99994)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_22mct"]
+_data = {
+&"RESET": SubResource("Animation_22mct"),
+&"fall": SubResource("Animation_0h87k"),
+&"pour": SubResource("Animation_c3t4g"),
+&"unpour": SubResource("Animation_or545")
+}
+
+[sub_resource type="Animation" id="Animation_o0u3r"]
+resource_name = "pour"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Cocoa:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1e-05, 0.5, 1),
+"update": 0,
+"values": [Vector2(38, 0), Vector2(38, 103), Vector2(38, 103), Vector2(38, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1tg5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Cocoa:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(38, 103)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uos8l"]
+_data = {
+&"RESET": SubResource("Animation_1tg5u"),
+&"pour": SubResource("Animation_o0u3r")
+}
 
 [node name="Back" type="Node2D"]
 script = ExtResource("1_teux4")
@@ -191,8 +429,16 @@ closed = true
 default_color = Color(0, 0.99607843, 0, 1)
 joint_mode = 2
 
-[node name="Cupholder" type="Sprite2D" parent="."]
+[node name="Cocoa" type="ColorRect" parent="."]
 z_index = 2
+offset_left = 593.0
+offset_top = 744.0
+offset_right = 631.0
+offset_bottom = 847.0
+color = Color(0.25882354, 0.14509805, 0.13725491, 1)
+
+[node name="Cupholder" type="Sprite2D" parent="."]
+z_index = 3
 position = Vector2(960, 967.00006)
 scale = Vector2(3, 3)
 texture = ExtResource("2_ymxry")
@@ -201,7 +447,8 @@ region_rect = Rect2(285.98584, 293.78934, 67.67639, 57.406433)
 
 [node name="Milk" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1380, 890)
+position = Vector2(1071.9999, 734.99994)
+metadata/_edit_group_ = true
 
 [node name="Milk" type="Sprite2D" parent="Milk"]
 scale = Vector2(3, 3)
@@ -209,9 +456,20 @@ texture = ExtResource("3_ep5l4")
 region_enabled = true
 region_rect = Rect2(423.99255, 240.52109, 63.658752, 110.32721)
 
+[node name="ColorRect" type="ColorRect" parent="Milk"]
+z_index = 2
+offset_left = 2.61
+offset_top = -134.017
+offset_right = 2.61
+offset_bottom = -110.131134
+rotation = 3.307399
+
 [node name="WhippedCream" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1222, 857)
+visible = false
+z_index = 2
+position = Vector2(1053, 693)
+metadata/_edit_group_ = true
 
 [node name="WhippingCream" type="Sprite2D" parent="WhippedCream"]
 scale = Vector2(3, 3)
@@ -221,10 +479,12 @@ region_rect = Rect2(374.3595, 216.67538, 37.431152, 133.72104)
 
 [node name="Cup" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(612, 920)
 metadata/_edit_group_ = true
 
 [node name="CocoaMilkCup" type="Sprite2D" parent="Cup"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-1.5, -3)
 scale = Vector2(3, 3)
 texture = ExtResource("4_md8u1")
@@ -233,6 +493,7 @@ region_rect = Rect2(17.86322, 281.00992, 59.239822, 70.03403)
 
 [node name="CocoaCup" type="Sprite2D" parent="Cup"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-1.5, -3)
 scale = Vector2(3, 3)
 texture = ExtResource("5_ri4s6")
@@ -241,6 +502,7 @@ region_rect = Rect2(18.312984, 280.93317, 58.46964, 69.71512)
 
 [node name="CupMarshmellows" type="Sprite2D" parent="Cup"]
 unique_name_in_owner = true
+visible = false
 z_index = 2
 position = Vector2(-1.500061, -89.00006)
 scale = Vector2(3, 3)
@@ -250,6 +512,7 @@ region_rect = Rect2(22.40881, 279.21826, 52.383503, 14.552277)
 
 [node name="MilkCup" type="Sprite2D" parent="Cup"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-1.500061, -2.000061)
 scale = Vector2(3, 3)
 texture = ExtResource("7_teux4")
@@ -258,6 +521,7 @@ region_rect = Rect2(17.9404, 280.7751, 58.733673, 70.269135)
 
 [node name="CupStraw" type="Sprite2D" parent="Cup"]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 position = Vector2(38.49994, -117.00006)
 scale = Vector2(3, 3)
@@ -275,6 +539,7 @@ region_rect = Rect2(18.065962, 281.59436, 59.165627, 69.38052)
 
 [node name="CupCream" type="AnimatedSprite2D" parent="Cup"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-0.5, -117)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_or545")
@@ -300,6 +565,26 @@ texture = ExtResource("14_rro74")
 region_enabled = true
 region_rect = Rect2(22.433266, 279.72638, 52.146767, 18.817322)
 
+[node name="AnimationPlayers" type="Node" parent="."]
+
+[node name="APWhippedCream" type="AnimationPlayer" parent="AnimationPlayers"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_c3t4g")
+}
+
+[node name="APMilk" type="AnimationPlayer" parent="AnimationPlayers"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_22mct")
+}
+
+[node name="APCocoa" type="AnimationPlayer" parent="AnimationPlayers"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_uos8l")
+}
+
 [connection signal="mouse_entered" from="Interaction/Cups" to="." method="_on_cups_mouse_entered"]
 [connection signal="mouse_exited" from="Interaction/Cups" to="." method="_on_cups_mouse_exited"]
 [connection signal="pressed" from="Interaction/Cups" to="." method="_on_cups_pressed"]
@@ -321,3 +606,6 @@ region_rect = Rect2(22.433266, 279.72638, 52.146767, 18.817322)
 [connection signal="mouse_entered" from="Interaction/Marshmellows" to="." method="_on_marshmellows_mouse_entered"]
 [connection signal="mouse_exited" from="Interaction/Marshmellows" to="." method="_on_marshmellows_mouse_exited"]
 [connection signal="pressed" from="Interaction/Marshmellows" to="." method="_on_marshmellows_pressed"]
+[connection signal="animation_finished" from="AnimationPlayers/APWhippedCream" to="." method="_on_ap_whipped_cream_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayers/APMilk" to="." method="_on_ap_milk_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayers/APCocoa" to="." method="_on_ap_cocoa_animation_finished"]

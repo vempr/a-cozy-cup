@@ -3,6 +3,7 @@ extends Node2D
 const CUPHOLDER_POSITION := Vector2(960, 933)
 const MILK_POSITION := Vector2(1380, 890)
 const WHIPPED_CREAM_POSITION := Vector2(1222, 857)
+const COCOA_POSITION := Vector2(612, 920)
 
 @onready var cup := %Cup
 @onready var straw := %Straw
@@ -19,26 +20,31 @@ func _ready() -> void:
 	
 	%EmptyCup.visible = true
 	%CupOutline.visible = true
+	milk.visible = true
+	whipped_cream.visible = true
 
 
 func _process(_delta: float) -> void:
-	if S.holding == G.HOLD.CUP:
-		cup.position = get_global_mouse_position()
-	elif S.holding == G.HOLD.MILK:
-		milk.position = get_global_mouse_position()
-	elif S.holding == G.HOLD.MARSHMELLOWS:
-		marshmellows.position = get_global_mouse_position()
-	elif S.holding == G.HOLD.WHIPPED_CREAM:
-		whipped_cream.position = get_global_mouse_position()
-	elif S.holding == G.HOLD.STRAW:
-		straw.position = get_global_mouse_position()
+	if S.in_animation:
+		return
+	else:
+		if S.holding == G.HOLD.CUP:
+			cup.position = get_global_mouse_position()
+		elif S.holding == G.HOLD.MILK:
+			milk.position = get_global_mouse_position()
+		elif S.holding == G.HOLD.MARSHMELLOWS:
+			marshmellows.position = get_global_mouse_position()
+		elif S.holding == G.HOLD.WHIPPED_CREAM:
+			whipped_cream.position = get_global_mouse_position()
+		elif S.holding == G.HOLD.STRAW:
+			straw.position = get_global_mouse_position()
 
 
 func reset_all_holdables() -> void:
-	%Milk.position = MILK_POSITION
-	%WhippedCream.position = WHIPPED_CREAM_POSITION
-	%Straw.visible = false
-	%Marshmellows.visible = false
+	milk.position = MILK_POSITION
+	whipped_cream.position = WHIPPED_CREAM_POSITION
+	straw.visible = false
+	marshmellows.visible = false
 
 
 func hide_all_options() -> void:
@@ -107,16 +113,31 @@ func _on_cupholder_pressed() -> void:
 	
 	elif S.cup_is_in_cupholder:
 		if S.holding == G.HOLD.STRAW:
-			straw.visible = false
-			S.holding = G.HOLD.NOTHING
-			%CupStraw.visible = true
+			if S.add_to_cup(G.OPTION.STRAW):
+				straw.visible = false
+				S.holding = G.HOLD.NOTHING
+				%CupStraw.visible = true
 		
 		elif S.holding == G.HOLD.MARSHMELLOWS:
-			marshmellows.visible = false
-			S.holding = G.HOLD.NOTHING
-			%CupMarshmellows.visible = true
-			
+			if S.add_to_cup(G.OPTION.MARSHMELLOWS):
+				marshmellows.visible = false
+				S.holding = G.HOLD.NOTHING
+				%CupMarshmellows.visible = true
+		
+		elif S.holding == G.HOLD.WHIPPED_CREAM:
+			if S.add_to_cup(G.OPTION.WHIPPED_CREAM):
+				%CupCream.visible = true
+				S.in_animation = true
+				%APWhippedCream.play("apply")
+				%CupCream.play("fill")
+		
+		elif S.holding == G.HOLD.MILK:
+			if S.add_to_cup(G.OPTION.MILK):
+				S.in_animation = true
+				%APMilk.play("pour")
+		
 		elif S.holding == G.HOLD.NOTHING:
+			S.cup_is_in_cupholder = false
 			S.holding = G.HOLD.CUP
 			hide_all_outlines()
 			%CupOutline.visible = true
@@ -133,19 +154,32 @@ func _on_straws_mouse_exited() -> void:
 
 
 func _on_straws_pressed() -> void:
-	var bef_res = straw.visible
-	if S.cup_is_in_cupholder:
-		reset_all_holdables()
-		straw.visible = !bef_res
-		if straw.visible:
-			S.holding = G.HOLD.STRAW
-		else:
-			S.holding = G.HOLD.NOTHING
+	if S.holding != G.HOLD.CUP:
+		var bef_res = straw.visible
+		if S.cup_is_in_cupholder:
+			reset_all_holdables()
+			straw.visible = !bef_res
+			if straw.visible:
+				S.holding = G.HOLD.STRAW
+			else:
+				S.holding = G.HOLD.NOTHING
 
 
 func _on_cocoa_pressed() -> void:
-	if !S.cup_is_in_cupholder:
-		print("pour")
+	if !S.cup_is_in_cupholder && (S.holding == G.HOLD.CUP || S.holding == G.HOLD.NOTHING):
+		S.cup_is_in_cocoa = !S.cup_is_in_cocoa
+		
+		# using G.OPTION.COCOA not in S.cup instead of S.add_to_cup
+		# because it's noticably more performant (idk why)
+		if S.cup_is_in_cocoa && G.OPTION.COCOA not in S.cup:
+			S.holding = G.HOLD.NOTHING
+			cup.position = COCOA_POSITION
+			
+			S.add_to_cup(G.OPTION.COCOA)
+			S.in_animation = true
+			%APCocoa.play("pour")
+		else:
+			S.holding = G.HOLD.CUP
 
 
 func _on_cocoa_mouse_entered() -> void:
@@ -165,12 +199,13 @@ func _on_whipped_cream_mouse_exited() -> void:
 
 
 func _on_whipped_cream_pressed() -> void:
-	if S.cup_is_in_cupholder:
-		reset_all_holdables()
-		if S.holding == G.HOLD.WHIPPED_CREAM:
-			S.holding = G.HOLD.NOTHING
-		else:
-			S.holding = G.HOLD.WHIPPED_CREAM
+	if S.holding != G.HOLD.CUP:
+		if S.cup_is_in_cupholder:
+			reset_all_holdables()
+			if S.holding == G.HOLD.WHIPPED_CREAM:
+				S.holding = G.HOLD.NOTHING
+			else:
+				S.holding = G.HOLD.WHIPPED_CREAM
 
 
 func _on_milk_mouse_entered() -> void:
@@ -182,12 +217,13 @@ func _on_milk_mouse_exited() -> void:
 
 
 func _on_milk_pressed() -> void:
-	if S.cup_is_in_cupholder:
-		reset_all_holdables()
-		if S.holding == G.HOLD.MILK:
-			S.holding = G.HOLD.NOTHING
-		else:
-			S.holding = G.HOLD.MILK
+	if S.holding != G.HOLD.CUP:
+		if S.cup_is_in_cupholder:
+			reset_all_holdables()
+			if S.holding == G.HOLD.MILK:
+				S.holding = G.HOLD.NOTHING
+			else:
+				S.holding = G.HOLD.MILK
 
 
 func _on_marshmellows_mouse_exited() -> void:
@@ -199,11 +235,52 @@ func _on_marshmellows_mouse_entered() -> void:
 
 
 func _on_marshmellows_pressed() -> void:
-	var bef_res = marshmellows.visible
-	if S.cup_is_in_cupholder:
-		reset_all_holdables()
-		marshmellows.visible = !bef_res
-		if marshmellows.visible:
-			S.holding = G.HOLD.MARSHMELLOWS
+	if S.holding != G.HOLD.CUP:
+		var bef_res = marshmellows.visible
+		if S.cup_is_in_cupholder:
+			reset_all_holdables()
+			marshmellows.visible = !bef_res
+			if marshmellows.visible:
+				S.holding = G.HOLD.MARSHMELLOWS
+			else:
+				S.holding = G.HOLD.NOTHING
+
+
+func _on_ap_whipped_cream_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "apply":
+		S.in_animation = false
+		%APWhippedCream.play("RESET")
+
+
+func _on_ap_milk_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "pour":
+		%APMilk.play("fall")
+	elif anim_name == "fall":
+		%APMilk.play("unpour")
+	elif anim_name == "unpour":
+		S.in_animation = false
+		if G.OPTION.COCOA in S.cup:
+			%CocoaMilkCup.visible = true
+			%CocoaCup.visible = false
+			%MilkCup.visible = false
+			%EmptyCup.visible = false
 		else:
-			S.holding = G.HOLD.NOTHING
+			%CocoaMilkCup.visible = false
+			%CocoaCup.visible = false
+			%MilkCup.visible = true
+			%EmptyCup.visible = false
+
+
+func _on_ap_cocoa_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "pour":
+		S.in_animation = false
+		if G.OPTION.MILK in S.cup:
+			%CocoaMilkCup.visible = true
+			%CocoaCup.visible = false
+			%MilkCup.visible = false
+			%EmptyCup.visible = false
+		else:
+			%CocoaMilkCup.visible = false
+			%CocoaCup.visible = true
+			%MilkCup.visible = false
+			%EmptyCup.visible = false
