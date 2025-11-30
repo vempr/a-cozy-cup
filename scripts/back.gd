@@ -1,5 +1,8 @@
 extends Node2D
 
+signal heads_up(opt: G.INTERACTABLE)
+signal heads_down
+
 const CUPHOLDER_POSITION := Vector2(960, 933)
 const MILK_POSITION := Vector2(1380, 890)
 const WHIPPED_CREAM_POSITION := Vector2(1222, 857)
@@ -69,13 +72,18 @@ func hide_all_outlines() -> void:
 
 func _on_cups_mouse_entered() -> void:
 	%CupOutline.modulate.a = 0.3
+	heads_up.emit(G.INTERACTABLE.CUPS)
 
 
 func _on_cups_mouse_exited() -> void:
 	%CupOutline.modulate.a = 0.2
+	heads_down.emit()
 
 
 func _on_cups_pressed() -> void:
+	if S.in_animation:
+		return
+	
 	S.holding = G.HOLD.CUP
 	S.reset_cup()
 	
@@ -91,13 +99,18 @@ func _on_cups_pressed() -> void:
 
 func _on_cupholder_mouse_entered() -> void:
 	%CupholderOutline.modulate.a = 0.3
+	heads_up.emit(G.INTERACTABLE.CUPHOLDER)
 
 
 func _on_cupholder_mouse_exited() -> void:
 	%CupholderOutline.modulate.a = 0.2
+	heads_down.emit()
 
 
 func _on_cupholder_pressed() -> void:
+	if S.in_animation:
+		return
+	
 	if S.holding == G.HOLD.CUP:
 		S.cup_is_in_cupholder = true
 		S.holding = G.HOLD.NOTHING
@@ -147,14 +160,16 @@ func _on_cupholder_pressed() -> void:
 
 func _on_straws_mouse_entered() -> void:
 	%StrawsOutline.modulate.a = 0.3
+	heads_up.emit(G.INTERACTABLE.STRAWS)
 
 
 func _on_straws_mouse_exited() -> void:
 	%StrawsOutline.modulate.a = 0.2
+	heads_down.emit()
 
 
 func _on_straws_pressed() -> void:
-	if S.holding != G.HOLD.CUP:
+	if S.holding != G.HOLD.CUP && !S.in_animation:
 		var bef_res = straw.visible
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
@@ -166,6 +181,9 @@ func _on_straws_pressed() -> void:
 
 
 func _on_cocoa_pressed() -> void:
+	if S.in_animation:
+		return
+	
 	if !S.cup_is_in_cupholder && (S.holding == G.HOLD.CUP || S.holding == G.HOLD.NOTHING):
 		S.cup_is_in_cocoa = !S.cup_is_in_cocoa
 		
@@ -184,22 +202,26 @@ func _on_cocoa_pressed() -> void:
 
 func _on_cocoa_mouse_entered() -> void:
 	%CocoaOutline.modulate.a = 0.3
+	heads_up.emit(G.INTERACTABLE.COCOA_MACHINE)
 
 
 func _on_cocoa_mouse_exited() -> void:
 	%CocoaOutline.modulate.a = 0.2
+	heads_down.emit()
 
 
 func _on_whipped_cream_mouse_entered() -> void:
 	%WhippedCreamOutline.modulate.a = 0.3
+	heads_up.emit(G.INTERACTABLE.WHIPPED_CREAM)
 
 
 func _on_whipped_cream_mouse_exited() -> void:
 	%WhippedCreamOutline.modulate.a = 0.2
+	heads_down.emit()
 
 
 func _on_whipped_cream_pressed() -> void:
-	if S.holding != G.HOLD.CUP:
+	if S.holding != G.HOLD.CUP && !S.in_animation:
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
 			if S.holding == G.HOLD.WHIPPED_CREAM:
@@ -210,14 +232,16 @@ func _on_whipped_cream_pressed() -> void:
 
 func _on_milk_mouse_entered() -> void:
 	%MilkOutline.modulate.a = 0.3
+	heads_up.emit(G.INTERACTABLE.MILK)
 
 
 func _on_milk_mouse_exited() -> void:
 	%MilkOutline.modulate.a = 0.2
+	heads_down.emit()
 
 
 func _on_milk_pressed() -> void:
-	if S.holding != G.HOLD.CUP:
+	if S.holding != G.HOLD.CUP && !S.in_animation:
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
 			if S.holding == G.HOLD.MILK:
@@ -228,14 +252,16 @@ func _on_milk_pressed() -> void:
 
 func _on_marshmellows_mouse_exited() -> void:
 	%MarshmellowsOutline.modulate.a = 0.3
+	heads_down.emit()
 
 
 func _on_marshmellows_mouse_entered() -> void:
 	%MarshmellowsOutline.modulate.a = 0.2
+	heads_up.emit(G.INTERACTABLE.MARSHMELLOWS)
 
 
 func _on_marshmellows_pressed() -> void:
-	if S.holding != G.HOLD.CUP:
+	if S.holding != G.HOLD.CUP && !S.in_animation:
 		var bef_res = marshmellows.visible
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
