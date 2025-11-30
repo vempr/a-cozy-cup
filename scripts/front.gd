@@ -31,9 +31,55 @@ func _ready() -> void:
 	start_btn.modulate.a = 0.0
 	next_btn.modulate.a = 0.0
 	
+	%"1Cup".modulate.a = 0.0
+	%"2Cup".modulate.a = 0.0
+	%"3Cup".modulate.a = 0.0
+	%"4Cup".modulate.a = 0.0
+	
+	$"CharactersSitting/1/Alph".modulate.a = 0.0
+	$"CharactersSitting/1/BalloonBoy".modulate.a = 0.0
+	$"CharactersSitting/1/Cloid".modulate.a = 0.0
+	$"CharactersSitting/1/Flam".modulate.a = 0.0
+	$"CharactersSitting/1/Icie".modulate.a = 0.0
+	$"CharactersSitting/1/Karot".modulate.a = 0.0
+	$"CharactersSitting/1/Slush".modulate.a = 0.0
+	$"CharactersSitting/1/Sunnie".modulate.a = 0.0
+	$"CharactersSitting/1/TreeVi".modulate.a = 0.0
+	
+	$"CharactersSitting/2/Alph".modulate.a = 0.0
+	$"CharactersSitting/2/BalloonBoy".modulate.a = 0.0
+	$"CharactersSitting/2/Cloid".modulate.a = 0.0
+	$"CharactersSitting/2/Flam".modulate.a = 0.0
+	$"CharactersSitting/2/Icie".modulate.a = 0.0
+	$"CharactersSitting/2/Karot".modulate.a = 0.0
+	$"CharactersSitting/2/Slush".modulate.a = 0.0
+	$"CharactersSitting/2/Sunnie".modulate.a = 0.0
+	$"CharactersSitting/2/TreeVi".modulate.a = 0.0
+	
+	$"CharactersSitting/3/Alph".modulate.a = 0.0
+	$"CharactersSitting/3/BalloonBoy".modulate.a = 0.0
+	$"CharactersSitting/3/Cloid".modulate.a = 0.0
+	$"CharactersSitting/3/Flam".modulate.a = 0.0
+	$"CharactersSitting/3/Icie".modulate.a = 0.0
+	$"CharactersSitting/3/Karot".modulate.a = 0.0
+	$"CharactersSitting/3/Slush".modulate.a = 0.0
+	$"CharactersSitting/3/Sunnie".modulate.a = 0.0
+	$"CharactersSitting/3/TreeVi".modulate.a = 0.0
+	
+	$"CharactersSitting/4/Alph".modulate.a = 0.0
+	$"CharactersSitting/4/BalloonBoy".modulate.a = 0.0
+	$"CharactersSitting/4/Cloid".modulate.a = 0.0
+	$"CharactersSitting/4/Flam".modulate.a = 0.0
+	$"CharactersSitting/4/Icie".modulate.a = 0.0
+	$"CharactersSitting/4/Karot".modulate.a = 0.0
+	$"CharactersSitting/4/Slush".modulate.a = 0.0
+	$"CharactersSitting/4/Sunnie".modulate.a = 0.0
+	$"CharactersSitting/4/TreeVi".modulate.a = 0.0
+	
 	S.pick_rand_customer()
 	update_order_message()
 	fade_in_controls(order, start_btn)
+	play_appearing_animation()
 
 
 func _process(_delta: float) -> void:
@@ -118,23 +164,28 @@ func _on_counter_cup_pressed() -> void:
 func _on_ap_cup_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "zoom_out":
 		var res = S.access_cup()
+		feedback.text = G.CHARACTERS.keys()[S.current_customer] + ": "
 		match res:
 			G.RESULT.PERFECT:
-				feedback.text = G.dialog[S.current_customer]["responses"][G.RESULT.PERFECT]
+				feedback.text += G.dialog[S.current_customer]["responses"][G.RESULT.PERFECT]
 			G.RESULT.OKAY:
-				feedback.text = G.dialog[S.current_customer]["responses"][G.RESULT.OKAY]
+				feedback.text += G.dialog[S.current_customer]["responses"][G.RESULT.OKAY]
 			G.RESULT.BAD:
-				feedback.text = G.dialog[S.current_customer]["responses"][G.RESULT.BAD]
+				feedback.text += G.dialog[S.current_customer]["responses"][G.RESULT.BAD]
 		
 		await fade_in_controls(feedback, next_btn)
 		%APCup.play("RESET")
+		play_appearing_animation()
 
 
 func _on_next_button_pressed() -> void:
+	play_disappearing_animation()
+	sit()
 	await fade_out_controls(feedback, next_btn)
 	S.pick_rand_customer()
 	update_order_message()
 	fade_in_controls(order, start_btn)
+	play_appearing_animation()
 
 
 func fade_in_controls(...controls: Array) -> bool:
@@ -166,4 +217,140 @@ func fade_out_controls(...controls: Array) -> bool:
 
 
 func update_order_message() -> void:
-	%Order.text = G.dialog[S.current_customer]["order_message"]
+	%Order.text = G.CHARACTERS.keys()[S.current_customer] + ": " + G.dialog[S.current_customer]["order_message"]
+
+
+func play_appearing_animation() -> void:
+	%Alph.modulate.a = 0.0
+	%BalloonBoy.modulate.a = 0.0
+	%Cloid.modulate.a = 0.0
+	%Flam.modulate.a = 0.0
+	%Icie.modulate.a = 0.0
+	%Karot.modulate.a = 0.0
+	%Slush.modulate.a = 0.0
+	%Sunnie.modulate.a = 0.0
+	%TreeVi.modulate.a = 0.0
+	
+	var tw = create_tween()
+	match S.current_customer:
+		G.CHARACTERS.ALPH:
+			tw.tween_property(%Alph, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.BALLOON_BOY:
+			tw.tween_property(%BalloonBoy, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.CLOID:
+			tw.tween_property(%Cloid, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.FLAM:
+			tw.tween_property(%Flam, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.ICIE:
+			tw.tween_property(%Icie, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.KAROT:
+			tw.tween_property(%Karot, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.SLUSH:
+			tw.tween_property(%Slush, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.SUNNIE:
+			tw.tween_property(%Sunnie, "modulate:a", 1.0, 0.2)
+		G.CHARACTERS.TREE_VI:
+			tw.tween_property(%TreeVi, "modulate:a", 1.0, 0.2)
+	
+	%APCharacter.play("appear")
+
+
+func play_disappearing_animation() -> void:
+	%APCharacter.play("appear")
+	
+	var tw = create_tween()
+	match S.current_customer:
+		G.CHARACTERS.ALPH:
+			tw.tween_property(%Alph, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.BALLOON_BOY:
+			tw.tween_property(%BalloonBoy, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.CLOID:
+			tw.tween_property(%Cloid, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.FLAM:
+			tw.tween_property(%Flam, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.ICIE:
+			tw.tween_property(%Icie, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.KAROT:
+			tw.tween_property(%Karot, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.SLUSH:
+			tw.tween_property(%Slush, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.SUNNIE:
+			tw.tween_property(%Sunnie, "modulate:a", 0.0, 0.2)
+		G.CHARACTERS.TREE_VI:
+			tw.tween_property(%TreeVi, "modulate:a", 0.0, 0.2)
+
+
+func sit() -> void:
+	var free_spots = []
+	for i in spots.keys():
+		if spots[i] == null:
+			free_spots.append(i)
+	if free_spots.size() <= 0:
+		return
+	
+	var ri = free_spots[randi() % free_spots.size()]
+	var spot_index = ri
+	var timer_node = get_node("Timers/%dTimer" % spot_index)
+	timer_node.start()
+	
+	var cup_node = get_node("TableCups/%dCup" % spot_index)
+	var twe = create_tween()
+	twe.parallel().tween_property(cup_node, "modulate:a", 1.0, 1.0)
+	
+	var character_name
+	match S.current_customer:
+		G.CHARACTERS.ALPH:
+			character_name = "Alph"
+		G.CHARACTERS.BALLOON_BOY:
+			character_name = "BalloonBoy"
+		G.CHARACTERS.CLOID:
+			character_name = "Cloid"
+		G.CHARACTERS.FLAM:
+			character_name = "Flam"
+		G.CHARACTERS.ICIE:
+			character_name = "Icie"
+		G.CHARACTERS.KAROT:
+			character_name = "Karot"
+		G.CHARACTERS.SLUSH:
+			character_name = "Slush"
+		G.CHARACTERS.SUNNIE:
+			character_name = "Sunnie"
+		G.CHARACTERS.TREE_VI:
+			character_name = "TreeVi"
+	
+	var character_node_path = "CharactersSitting/%d/%s" % [spot_index, character_name]
+	var character_node = get_node(character_node_path)
+	
+	spots[spot_index] = character_node
+	twe.parallel().tween_property(character_node, "modulate:a", 1.0, 1.0)
+
+
+func _on_1_timeout() -> void:
+	unsit(1)
+
+
+func _on_2_timeout() -> void:
+	unsit(2)
+
+
+func _on_3_timeout() -> void:
+	unsit(3)
+
+
+func _on_4_timeout() -> void:
+	unsit(4)
+
+
+func unsit(sidx: int) -> void:
+	if spots.get(sidx) == null:
+		return
+	
+	var cup_node = get_node("TableCups/%dCup" % sidx)
+	var twe = create_tween()
+	twe.parallel().tween_property(cup_node, "modulate:a", 0.0, 1.0)
+	
+	var character_node = spots[sidx]
+	if character_node != null:
+		twe.parallel().tween_property(character_node, "modulate:a", 0.0, 1.0)
+	
+	spots[sidx] = null

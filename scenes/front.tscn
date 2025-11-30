@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bpd888qe20qut"]
+[gd_scene load_steps=41 format=3 uid="uid://bpd888qe20qut"]
 
 [ext_resource type="Texture2D" uid="uid://biaw4tamn71cm" path="res://assets/aseprite/front.png" id="1_1p0m3"]
 [ext_resource type="Script" uid="uid://drq35ubp80m3j" path="res://scripts/front.gd" id="1_mnnjc"]
@@ -103,6 +103,43 @@ _data = {
 &"zoom_out": SubResource("Animation_nuq7c")
 }
 
+[sub_resource type="Animation" id="Animation_ne8vl"]
+resource_name = "appear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Characters:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ryxkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Characters:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1nwwk"]
+_data = {
+&"RESET": SubResource("Animation_ryxkl"),
+&"appear": SubResource("Animation_ne8vl")
+}
+
 [node name="Front" type="Node2D"]
 script = ExtResource("1_mnnjc")
 
@@ -120,6 +157,7 @@ unique_name_in_owner = true
 
 [node name="Order" type="Label" parent="Dialog"]
 unique_name_in_owner = true
+visible = false
 offset_left = 1272.0
 offset_top = 338.0
 offset_right = 1798.0
@@ -132,6 +170,7 @@ autowrap_mode = 2
 
 [node name="Feedback" type="Label" parent="Dialog"]
 unique_name_in_owner = true
+visible = false
 offset_left = 1272.0
 offset_top = 444.0
 offset_right = 1798.0
@@ -144,6 +183,7 @@ autowrap_mode = 2
 
 [node name="StartButton" type="Button" parent="Dialog"]
 unique_name_in_owner = true
+visible = false
 offset_left = 1274.0
 offset_top = 549.0
 offset_right = 1781.0
@@ -159,6 +199,7 @@ text = "Got it!"
 
 [node name="NextButton" type="Button" parent="Dialog"]
 unique_name_in_owner = true
+visible = false
 offset_left = 1274.0
 offset_top = 549.0
 offset_right = 1781.0
@@ -197,7 +238,6 @@ joint_mode = 2
 
 [node name="Alph" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(966, 799)
 scale = Vector2(3, 3)
 texture = ExtResource("2_nay5q")
@@ -206,7 +246,6 @@ region_rect = Rect2(224.89856, 184.15092, 185.33075, 89.5168)
 
 [node name="BalloonBoy" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(957, 649)
 scale = Vector2(3, 3)
 texture = ExtResource("3_dmhun")
@@ -215,7 +254,6 @@ region_rect = Rect2(291.93524, 171.8121, 50.906982, 103.31952)
 
 [node name="Cloid" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(957, 651)
 scale = Vector2(3, 3)
 texture = ExtResource("4_gutky")
@@ -224,7 +262,6 @@ region_rect = Rect2(236.40967, 171.34946, 157.46365, 100.74869)
 
 [node name="Flam" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(953, 733.00006)
 rotation = 0.061086524
 scale = Vector2(3, 3)
@@ -234,7 +271,6 @@ region_rect = Rect2(255.0919, 138.7088, 124.69777, 168.19922)
 
 [node name="Icie" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(960, 662)
 scale = Vector2(3, 3)
 texture = ExtResource("6_u48vl")
@@ -243,7 +279,6 @@ region_rect = Rect2(235.36667, 130.7919, 163.30246, 163.18326)
 
 [node name="Karot" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(962, 673)
 scale = Vector2(3, 3)
 texture = ExtResource("7_4ov54")
@@ -252,7 +287,6 @@ region_rect = Rect2(266.8103, 112.98535, 98.346924, 187.60233)
 
 [node name="Slush" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(953.00006, 737)
 scale = Vector2(3, 3)
 texture = ExtResource("8_pymnp")
@@ -261,7 +295,6 @@ region_rect = Rect2(248.51265, 169.55685, 131.48784, 111.44299)
 
 [node name="Sunnie" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(956, 654)
 scale = Vector2(3, 3)
 texture = ExtResource("9_7m0dx")
@@ -270,7 +303,6 @@ region_rect = Rect2(247.05322, 150.15672, 144.28598, 107.636826)
 
 [node name="TreeVi" type="Sprite2D" parent="Characters"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(963, 656)
 scale = Vector2(3, 3)
 texture = ExtResource("10_cso2b")
@@ -284,7 +316,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Alph" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(215, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("16_qfg50")
@@ -292,7 +323,6 @@ region_enabled = true
 region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
 
 [node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(211, 354.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("17_xr2if")
@@ -300,7 +330,6 @@ region_enabled = true
 region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
 
 [node name="Cloid" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(226, 360)
 scale = Vector2(3, 3)
 texture = ExtResource("18_mnnjc")
@@ -308,7 +337,6 @@ region_enabled = true
 region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
 
 [node name="Flam" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(233, 403.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("19_pfu8l")
@@ -316,7 +344,6 @@ region_enabled = true
 region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
 
 [node name="Icie" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(247, 364.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("20_orjqy")
@@ -324,7 +351,6 @@ region_enabled = true
 region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
 
 [node name="Karot" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(216, 378.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("21_gr7sk")
@@ -332,7 +358,6 @@ region_enabled = true
 region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
 
 [node name="Slush" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(212, 382.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("22_t3d3t")
@@ -340,7 +365,6 @@ region_enabled = true
 region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
 
 [node name="Sunnie" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(218, 359.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("23_kjunq")
@@ -348,7 +372,6 @@ region_enabled = true
 region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
 
 [node name="TreeVi" type="Sprite2D" parent="CharactersSitting/1"]
-visible = false
 position = Vector2(230, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("24_nuq7c")
@@ -359,7 +382,6 @@ region_rect = Rect2(50.231316, 75.12213, 45.88298, 89.10321)
 unique_name_in_owner = true
 
 [node name="Alph" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(671, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("16_qfg50")
@@ -368,7 +390,6 @@ region_enabled = true
 region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
 
 [node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(676.5, 354.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("17_xr2if")
@@ -377,7 +398,6 @@ region_enabled = true
 region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
 
 [node name="Cloid" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(656.5, 360)
 scale = Vector2(3, 3)
 texture = ExtResource("18_mnnjc")
@@ -386,7 +406,6 @@ region_enabled = true
 region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
 
 [node name="Flam" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(658.5, 403.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("19_pfu8l")
@@ -395,7 +414,6 @@ region_enabled = true
 region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
 
 [node name="Icie" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(642.5, 364.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("20_orjqy")
@@ -404,7 +422,6 @@ region_enabled = true
 region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
 
 [node name="Karot" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(672, 378.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("21_gr7sk")
@@ -413,7 +430,6 @@ region_enabled = true
 region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
 
 [node name="Slush" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(676.5, 382.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("22_t3d3t")
@@ -422,7 +438,6 @@ region_enabled = true
 region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
 
 [node name="Sunnie" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(674, 359.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("23_kjunq")
@@ -431,7 +446,6 @@ region_enabled = true
 region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
 
 [node name="TreeVi" type="Sprite2D" parent="CharactersSitting/2"]
-visible = false
 position = Vector2(660.5, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("24_nuq7c")
@@ -443,7 +457,6 @@ region_rect = Rect2(50.231316, 75.12213, 45.88298, 89.10321)
 unique_name_in_owner = true
 
 [node name="Alph" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1234.5, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("16_qfg50")
@@ -451,7 +464,6 @@ region_enabled = true
 region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
 
 [node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1230.5, 354.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("17_xr2if")
@@ -459,7 +471,6 @@ region_enabled = true
 region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
 
 [node name="Cloid" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1245.5, 360)
 scale = Vector2(3, 3)
 texture = ExtResource("18_mnnjc")
@@ -467,7 +478,6 @@ region_enabled = true
 region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
 
 [node name="Flam" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1252.5, 403.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("19_pfu8l")
@@ -475,7 +485,6 @@ region_enabled = true
 region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
 
 [node name="Icie" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1266.5, 364.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("20_orjqy")
@@ -483,7 +492,6 @@ region_enabled = true
 region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
 
 [node name="Karot" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1235.5, 378.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("21_gr7sk")
@@ -491,7 +499,6 @@ region_enabled = true
 region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
 
 [node name="Slush" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1231.5, 382.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("22_t3d3t")
@@ -499,7 +506,6 @@ region_enabled = true
 region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
 
 [node name="Sunnie" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1237.5, 359.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("23_kjunq")
@@ -507,7 +513,6 @@ region_enabled = true
 region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
 
 [node name="TreeVi" type="Sprite2D" parent="CharactersSitting/3"]
-visible = false
 position = Vector2(1249.5, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("24_nuq7c")
@@ -518,7 +523,6 @@ region_rect = Rect2(50.231316, 75.12213, 45.88298, 89.10321)
 unique_name_in_owner = true
 
 [node name="Alph" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1708.5, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("16_qfg50")
@@ -527,7 +531,6 @@ region_enabled = true
 region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
 
 [node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1714, 354.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("17_xr2if")
@@ -536,7 +539,6 @@ region_enabled = true
 region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
 
 [node name="Cloid" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1694, 360)
 scale = Vector2(3, 3)
 texture = ExtResource("18_mnnjc")
@@ -545,7 +547,6 @@ region_enabled = true
 region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
 
 [node name="Flam" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1696, 403.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("19_pfu8l")
@@ -554,7 +555,6 @@ region_enabled = true
 region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
 
 [node name="Icie" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1680, 364.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("20_orjqy")
@@ -563,7 +563,6 @@ region_enabled = true
 region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
 
 [node name="Karot" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1709.5, 378.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("21_gr7sk")
@@ -572,7 +571,6 @@ region_enabled = true
 region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
 
 [node name="Slush" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1714, 382.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("22_t3d3t")
@@ -581,7 +579,6 @@ region_enabled = true
 region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
 
 [node name="Sunnie" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1711.5, 359.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("23_kjunq")
@@ -590,7 +587,6 @@ region_enabled = true
 region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
 
 [node name="TreeVi" type="Sprite2D" parent="CharactersSitting/4"]
-visible = false
 position = Vector2(1698, 370.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("24_nuq7c")
@@ -708,6 +704,32 @@ libraries = {
 }
 
 [node name="APCharacter" type="AnimationPlayer" parent="AnimationPlayers"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_1nwwk")
+}
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="1Timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 40.0
+one_shot = true
+
+[node name="2Timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 40.0
+one_shot = true
+
+[node name="3Timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 40.0
+one_shot = true
+
+[node name="4Timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 40.0
+one_shot = true
 
 [connection signal="mouse_entered" from="Interaction/CounterCup" to="." method="_on_counter_cup_mouse_entered"]
 [connection signal="mouse_exited" from="Interaction/CounterCup" to="." method="_on_counter_cup_mouse_exited"]
@@ -715,3 +737,7 @@ libraries = {
 [connection signal="pressed" from="Dialog/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Dialog/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayers/APCup" to="." method="_on_ap_cup_animation_finished"]
+[connection signal="timeout" from="Timers/1Timer" to="." method="_on_1_timeout"]
+[connection signal="timeout" from="Timers/2Timer" to="." method="_on_2_timeout"]
+[connection signal="timeout" from="Timers/3Timer" to="." method="_on_3_timeout"]
+[connection signal="timeout" from="Timers/4Timer" to="." method="_on_4_timeout"]
