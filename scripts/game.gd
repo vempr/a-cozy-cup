@@ -13,6 +13,8 @@ func _process(_delta: float) -> void:
 
 
 func _on_front_start_order() -> void:
+	%Back.visible = true
+	S.reset_cup()
 	%GameAnimationPlayer.play("away")
 
 

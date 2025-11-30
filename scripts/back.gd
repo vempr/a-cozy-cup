@@ -202,7 +202,7 @@ func _on_cocoa_pressed() -> void:
 			S.holding = G.HOLD.NOTHING
 			cup.position = COCOA_POSITION
 			
-			S.add_to_cup(G.OPTION.COCOA)
+			S.cup.append(G.OPTION.COCOA)
 			S.in_animation = true
 			%APCocoa.play("pour")
 		else:
@@ -331,3 +331,9 @@ func _on_done_button_pressed() -> void:
 	
 	await tween.finished
 	%HUD.visible = false
+
+
+func _on_game_switch_to_front() -> void:
+	%DoneButton.visible = true
+	%DoneButton.modulate.a = 1.0
+	_ready()

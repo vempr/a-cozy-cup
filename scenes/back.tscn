@@ -139,34 +139,6 @@ _data = {
 &"apply": SubResource("Animation_mkwx5")
 }
 
-[sub_resource type="Animation" id="Animation_c3t4g"]
-resource_name = "pour"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Milk:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -1.7453293]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%Milk:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1071.9999, 734.99994)]
-}
-
 [sub_resource type="Animation" id="Animation_22mct"]
 length = 0.001
 tracks/0/type = "value"
@@ -245,6 +217,34 @@ tracks/1/keys = {
 "values": [Vector2(-1.23, -110.242)]
 }
 
+[sub_resource type="Animation" id="Animation_c3t4g"]
+resource_name = "pour"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Milk:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.7453293]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Milk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1071.9999, 734.99994)]
+}
+
 [sub_resource type="Animation" id="Animation_or545"]
 resource_name = "unpour"
 length = 0.3
@@ -281,21 +281,6 @@ _data = {
 &"unpour": SubResource("Animation_or545")
 }
 
-[sub_resource type="Animation" id="Animation_o0u3r"]
-resource_name = "pour"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Cocoa:size")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1e-05, 0.5, 1),
-"update": 0,
-"values": [Vector2(38, 0), Vector2(38, 103), Vector2(38, 103), Vector2(38, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_1tg5u"]
 length = 0.001
 tracks/0/type = "value"
@@ -309,6 +294,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(38, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o0u3r"]
+resource_name = "pour"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Cocoa:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1e-05, 0.5, 1),
+"update": 0,
+"values": [Vector2(38, 0), Vector2(38, 103), Vector2(38, 103), Vector2(38, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uos8l"]

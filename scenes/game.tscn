@@ -74,6 +74,7 @@ libraries = {
 
 [connection signal="switch_to_back" from="." to="Back" method="_on_game_switch_to_back"]
 [connection signal="switch_to_front" from="." to="Front" method="_on_game_switch_to_front"]
+[connection signal="switch_to_front" from="." to="Back" method="_on_game_switch_to_front"]
 [connection signal="start_order" from="Front" to="." method="_on_front_start_order"]
 [connection signal="order_finished" from="Back" to="." method="_on_back_order_finished"]
 [connection signal="animation_finished" from="GameAnimationPlayer" to="." method="_on_game_animation_player_animation_finished"]
