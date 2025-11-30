@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://cx1xbmf7708wb"]
+
+[ext_resource type="Texture2D" uid="uid://0tngnis6nl6r" path="res://assets/aseprite/back.png" id="1_rvrcs"]
+[ext_resource type="Texture2D" uid="uid://bhxboec2v2n6l" path="res://assets/aseprite/cupholder.png" id="2_ymxry"]
+[ext_resource type="Texture2D" uid="uid://ci5bkypa8bfkj" path="res://assets/aseprite/milk.png" id="3_ep5l4"]
+[ext_resource type="Texture2D" uid="uid://cklen7elpvnt7" path="res://assets/aseprite/cups/cocoa-milk.png" id="4_md8u1"]
+[ext_resource type="Texture2D" uid="uid://cqkqkndaapce0" path="res://assets/aseprite/whipping_cream.png" id="4_ri4s6"]
+[ext_resource type="Texture2D" uid="uid://bol4s4v6n3s6t" path="res://assets/aseprite/cups/cocoa.png" id="5_ri4s6"]
+[ext_resource type="Texture2D" uid="uid://bnka68mc45yas" path="res://assets/aseprite/cups/marshmellows.png" id="6_pq8vc"]
+[ext_resource type="Texture2D" uid="uid://co7n61a7kk8o2" path="res://assets/aseprite/cups/milk.png" id="7_teux4"]
+[ext_resource type="Texture2D" uid="uid://bkqt5qyrhc8ka" path="res://assets/aseprite/cups/straw.png" id="8_34pm6"]
+[ext_resource type="Texture2D" uid="uid://cy2jgtcbcofqt" path="res://assets/aseprite/cups/whipped_cream.png" id="9_rro74"]
+[ext_resource type="Texture2D" uid="uid://0fswf4c034de" path="res://assets/aseprite/cup.png" id="11_pq8vc"]
+
+[node name="Back" type="Node2D"]
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("1_rvrcs")
+
+[node name="Cupholder" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(960, 967.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("2_ymxry")
+region_enabled = true
+region_rect = Rect2(285.98584, 293.78934, 67.67639, 57.406433)
+
+[node name="Milk" type="Node2D" parent="."]
+
+[node name="Milk" type="Sprite2D" parent="Milk"]
+position = Vector2(1380, 890.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("3_ep5l4")
+region_enabled = true
+region_rect = Rect2(423.99255, 240.52109, 63.658752, 110.32721)
+
+[node name="WhippedCream" type="Node2D" parent="."]
+
+[node name="WhippingCream" type="Sprite2D" parent="WhippedCream"]
+position = Vector2(1222, 857)
+scale = Vector2(3, 3)
+texture = ExtResource("4_ri4s6")
+region_enabled = true
+region_rect = Rect2(374.3595, 216.67538, 37.431152, 133.72104)
+
+[node name="CupholderCup" type="Node2D" parent="."]
+
+[node name="CocoaMilkCup" type="Sprite2D" parent="CupholderCup"]
+visible = false
+position = Vector2(959.00006, 938.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("4_md8u1")
+region_enabled = true
+region_rect = Rect2(17.86322, 281.00992, 59.239822, 70.03403)
+
+[node name="CocoaCup" type="Sprite2D" parent="CupholderCup"]
+visible = false
+position = Vector2(959.00006, 938.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("5_ri4s6")
+region_enabled = true
+region_rect = Rect2(18.312984, 280.93317, 58.46964, 69.71512)
+
+[node name="CupMarshmellows" type="Sprite2D" parent="CupholderCup"]
+z_index = 1
+position = Vector2(959, 852)
+scale = Vector2(3, 3)
+texture = ExtResource("6_pq8vc")
+region_enabled = true
+region_rect = Rect2(22.40881, 279.21826, 52.383503, 14.552277)
+
+[node name="MilkCup" type="Sprite2D" parent="CupholderCup"]
+position = Vector2(959, 939)
+scale = Vector2(3, 3)
+texture = ExtResource("7_teux4")
+region_enabled = true
+region_rect = Rect2(17.9404, 280.7751, 58.733673, 70.269135)
+
+[node name="CupStraw" type="Sprite2D" parent="CupholderCup"]
+position = Vector2(999, 824)
+scale = Vector2(3, 3)
+texture = ExtResource("8_34pm6")
+region_enabled = true
+region_rect = Rect2(54.066704, 262.98627, 16.053604, 29.877563)
+
+[node name="EmptyCup" type="Sprite2D" parent="CupholderCup"]
+visible = false
+position = Vector2(960.00006, 938.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("11_pq8vc")
+region_enabled = true
+region_rect = Rect2(18.065962, 281.59436, 59.165627, 69.38052)
+
+[node name="CupCream" type="Sprite2D" parent="CupholderCup"]
+position = Vector2(960, 823)
+scale = Vector2(3, 3)
+texture = ExtResource("9_rro74")
+region_enabled = true
+region_rect = Rect2(22.937891, 260.4933, 49.28531, 34.496613)

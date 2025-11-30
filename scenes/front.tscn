@@ -1,0 +1,514 @@
+[gd_scene load_steps=28 format=3 uid="uid://bpd888qe20qut"]
+
+[ext_resource type="Texture2D" uid="uid://biaw4tamn71cm" path="res://assets/aseprite/front.png" id="1_1p0m3"]
+[ext_resource type="Texture2D" uid="uid://dquo74fpsdqr0" path="res://assets/aseprite/front_counter.png" id="2_dmhun"]
+[ext_resource type="Texture2D" uid="uid://xdux0jpawg57" path="res://assets/aseprite/characters/alph.png" id="2_nay5q"]
+[ext_resource type="Texture2D" uid="uid://boilpmw7wvgqw" path="res://assets/aseprite/characters/balloon_boy.png" id="3_dmhun"]
+[ext_resource type="Texture2D" uid="uid://byff7rafyxj7d" path="res://assets/aseprite/characters/cloid.png" id="4_gutky"]
+[ext_resource type="Texture2D" uid="uid://bj0p65iyb08rg" path="res://assets/aseprite/characters/flam.png" id="5_u7va4"]
+[ext_resource type="Texture2D" uid="uid://6j6cqerol6lv" path="res://assets/aseprite/characters/icie.png" id="6_u48vl"]
+[ext_resource type="Texture2D" uid="uid://1abct8ywdnp4" path="res://assets/aseprite/characters/karot.png" id="7_4ov54"]
+[ext_resource type="Texture2D" uid="uid://d3dhh0i2oepv5" path="res://assets/aseprite/characters/slush.png" id="8_pymnp"]
+[ext_resource type="Texture2D" uid="uid://c21o4kcrsw60p" path="res://assets/aseprite/characters/sunnie.png" id="9_7m0dx"]
+[ext_resource type="Texture2D" uid="uid://dm3l17nvjudny" path="res://assets/aseprite/characters/tree_vi.png" id="10_cso2b"]
+[ext_resource type="FontFile" uid="uid://jpmb4gqr3436" path="res://assets/Early GameBoy.ttf" id="12_gutky"]
+[ext_resource type="StyleBox" uid="uid://cjui3plpysm46" path="res://styles/button_normal.tres" id="13_4ov54"]
+[ext_resource type="StyleBox" uid="uid://bxtlv1adhi7sb" path="res://styles/button_pressed.tres" id="14_pymnp"]
+[ext_resource type="StyleBox" uid="uid://d20xs8mpcu1ca" path="res://styles/button_hover.tres" id="15_7m0dx"]
+[ext_resource type="Texture2D" uid="uid://dte6teo7h0s4m" path="res://assets/aseprite/characters/sitting/alph_sitting.png" id="16_qfg50"]
+[ext_resource type="Texture2D" uid="uid://bcwk7dsritg0j" path="res://assets/aseprite/characters/sitting/balloon_boy_sitting.png" id="17_xr2if"]
+[ext_resource type="Texture2D" uid="uid://c7f8njsfgnf1v" path="res://assets/aseprite/characters/sitting/cloid_sitting.png" id="18_mnnjc"]
+[ext_resource type="Texture2D" uid="uid://jq5te75mdhdi" path="res://assets/aseprite/characters/sitting/flam_sitting.png" id="19_pfu8l"]
+[ext_resource type="Texture2D" uid="uid://c1blusu30pc8a" path="res://assets/aseprite/characters/sitting/icie_sitting.png" id="20_orjqy"]
+[ext_resource type="Texture2D" uid="uid://mc0jyhp1yece" path="res://assets/aseprite/characters/sitting/karot_sitting.png" id="21_gr7sk"]
+[ext_resource type="Texture2D" uid="uid://b8thoq5hs0mf5" path="res://assets/aseprite/characters/sitting/slush_sitting.png" id="22_t3d3t"]
+[ext_resource type="Texture2D" uid="uid://ebwj4r5bui6w" path="res://assets/aseprite/characters/sitting/sunnie_sitting.png" id="23_kjunq"]
+[ext_resource type="Texture2D" uid="uid://ws3hxo6fh4id" path="res://assets/aseprite/characters/sitting/tree_vi_sitting.png" id="24_nuq7c"]
+[ext_resource type="Texture2D" uid="uid://bol4s4v6n3s6t" path="res://assets/aseprite/cups/cocoa.png" id="25_xr2if"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7va4"]
+bg_color = Color(0, 0, 0, 0.5882353)
+expand_margin_left = 15.0
+expand_margin_top = 10.0
+shadow_color = Color(0, 0, 0, 0.43137255)
+shadow_size = 14
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cso2b"]
+
+[node name="Front" type="Node2D"]
+
+[node name="Dialog" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="Dialog"]
+offset_left = 1272.0
+offset_top = 378.0
+offset_right = 1798.0
+offset_bottom = 619.0
+theme_override_fonts/font = ExtResource("12_gutky")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7va4")
+text = "One hot chocolate supreme please! and please give me a straw-without it i can't stop myself from drinking the whole thing in one go.."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Dialog"]
+offset_left = 1274.0
+offset_top = 549.0
+offset_right = 1781.0
+offset_bottom = 605.0
+theme_override_fonts/font = ExtResource("12_gutky")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("13_4ov54")
+theme_override_styles/pressed = ExtResource("14_pymnp")
+theme_override_styles/hover = ExtResource("15_7m0dx")
+theme_override_styles/hover_pressed = ExtResource("14_pymnp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cso2b")
+text = "Got it!"
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("1_1p0m3")
+
+[node name="FrontCounter" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(960, 859)
+scale = Vector2(3, 3)
+texture = ExtResource("2_dmhun")
+region_enabled = true
+region_rect = Rect2(0, 212.51346, 640, 147.48654)
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Alph" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(966, 799)
+scale = Vector2(3, 3)
+texture = ExtResource("2_nay5q")
+region_enabled = true
+region_rect = Rect2(224.89856, 184.15092, 185.33075, 89.5168)
+
+[node name="BalloonBoy" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(957, 649)
+scale = Vector2(3, 3)
+texture = ExtResource("3_dmhun")
+region_enabled = true
+region_rect = Rect2(291.93524, 171.8121, 50.906982, 103.31952)
+
+[node name="Cloid" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(957, 651)
+scale = Vector2(3, 3)
+texture = ExtResource("4_gutky")
+region_enabled = true
+region_rect = Rect2(236.40967, 171.34946, 157.46365, 100.74869)
+
+[node name="Flam" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(953, 733.00006)
+rotation = 0.061086524
+scale = Vector2(3, 3)
+texture = ExtResource("5_u7va4")
+region_enabled = true
+region_rect = Rect2(255.0919, 138.7088, 124.69777, 168.19922)
+
+[node name="Icie" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(960, 662)
+scale = Vector2(3, 3)
+texture = ExtResource("6_u48vl")
+region_enabled = true
+region_rect = Rect2(235.36667, 130.7919, 163.30246, 163.18326)
+
+[node name="Karot" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(962, 673)
+scale = Vector2(3, 3)
+texture = ExtResource("7_4ov54")
+region_enabled = true
+region_rect = Rect2(266.8103, 112.98535, 98.346924, 187.60233)
+
+[node name="Slush" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(953.00006, 737)
+scale = Vector2(3, 3)
+texture = ExtResource("8_pymnp")
+region_enabled = true
+region_rect = Rect2(248.51265, 169.55685, 131.48784, 111.44299)
+
+[node name="Sunnie" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(956, 654)
+scale = Vector2(3, 3)
+texture = ExtResource("9_7m0dx")
+region_enabled = true
+region_rect = Rect2(247.05322, 150.15672, 144.28598, 107.636826)
+
+[node name="TreeVi" type="Sprite2D" parent="Characters"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(963, 656)
+scale = Vector2(3, 3)
+texture = ExtResource("10_cso2b")
+region_enabled = true
+region_rect = Rect2(263.13873, 114.32057, 97.86157, 188.67964)
+
+[node name="CharactersSitting" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="1" type="Node2D" parent="CharactersSitting"]
+unique_name_in_owner = true
+
+[node name="Alph" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(215, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("16_qfg50")
+region_enabled = true
+region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
+
+[node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(211, 354.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("17_xr2if")
+region_enabled = true
+region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
+
+[node name="Cloid" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(226, 360)
+scale = Vector2(3, 3)
+texture = ExtResource("18_mnnjc")
+region_enabled = true
+region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
+
+[node name="Flam" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(233, 403.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("19_pfu8l")
+region_enabled = true
+region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
+
+[node name="Icie" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(247, 364.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("20_orjqy")
+region_enabled = true
+region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
+
+[node name="Karot" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(216, 378.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("21_gr7sk")
+region_enabled = true
+region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
+
+[node name="Slush" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(212, 382.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("22_t3d3t")
+region_enabled = true
+region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
+
+[node name="Sunnie" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(218, 359.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("23_kjunq")
+region_enabled = true
+region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
+
+[node name="TreeVi" type="Sprite2D" parent="CharactersSitting/1"]
+visible = false
+position = Vector2(230, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("24_nuq7c")
+region_enabled = true
+region_rect = Rect2(50.231316, 75.12213, 45.88298, 89.10321)
+
+[node name="2" type="Node2D" parent="CharactersSitting"]
+unique_name_in_owner = true
+
+[node name="Alph" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(671, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("16_qfg50")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
+
+[node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(676.5, 354.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("17_xr2if")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
+
+[node name="Cloid" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(656.5, 360)
+scale = Vector2(3, 3)
+texture = ExtResource("18_mnnjc")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
+
+[node name="Flam" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(658.5, 403.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("19_pfu8l")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
+
+[node name="Icie" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(642.5, 364.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("20_orjqy")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
+
+[node name="Karot" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(672, 378.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("21_gr7sk")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
+
+[node name="Slush" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(676.5, 382.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("22_t3d3t")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
+
+[node name="Sunnie" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(674, 359.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("23_kjunq")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
+
+[node name="TreeVi" type="Sprite2D" parent="CharactersSitting/2"]
+visible = false
+position = Vector2(660.5, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("24_nuq7c")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(50.231316, 75.12213, 45.88298, 89.10321)
+
+[node name="3" type="Node2D" parent="CharactersSitting"]
+unique_name_in_owner = true
+
+[node name="Alph" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1234.5, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("16_qfg50")
+region_enabled = true
+region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
+
+[node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1230.5, 354.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("17_xr2if")
+region_enabled = true
+region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
+
+[node name="Cloid" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1245.5, 360)
+scale = Vector2(3, 3)
+texture = ExtResource("18_mnnjc")
+region_enabled = true
+region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
+
+[node name="Flam" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1252.5, 403.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("19_pfu8l")
+region_enabled = true
+region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
+
+[node name="Icie" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1266.5, 364.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("20_orjqy")
+region_enabled = true
+region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
+
+[node name="Karot" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1235.5, 378.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("21_gr7sk")
+region_enabled = true
+region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
+
+[node name="Slush" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1231.5, 382.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("22_t3d3t")
+region_enabled = true
+region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
+
+[node name="Sunnie" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1237.5, 359.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("23_kjunq")
+region_enabled = true
+region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
+
+[node name="TreeVi" type="Sprite2D" parent="CharactersSitting/3"]
+visible = false
+position = Vector2(1249.5, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("24_nuq7c")
+region_enabled = true
+region_rect = Rect2(50.231316, 75.12213, 45.88298, 89.10321)
+
+[node name="4" type="Node2D" parent="CharactersSitting"]
+unique_name_in_owner = true
+
+[node name="Alph" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1708.5, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("16_qfg50")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(65.76889, 101.904884, 11.445564, 43.255043)
+
+[node name="BalloonBoy" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1714, 354.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("17_xr2if")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(57.838013, 93.299866, 27.767029, 50.52437)
+
+[node name="Cloid" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1694, 360)
+scale = Vector2(3, 3)
+texture = ExtResource("18_mnnjc")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(31.988022, 87.62005, 83.74669, 74.083626)
+
+[node name="Flam" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1696, 403.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("19_pfu8l")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(53.366776, 99.558945, 43.804535, 72.70442)
+
+[node name="Icie" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1680, 364.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("20_orjqy")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(51.110855, 89.47325, 62.037575, 73.2534)
+
+[node name="Karot" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1709.5, 378.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("21_gr7sk")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(51.973793, 89.25134, 40.050545, 74.1749)
+
+[node name="Slush" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1714, 382.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("22_t3d3t")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(45.193058, 100.96652, 53.719723, 48.45308)
+
+[node name="Sunnie" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1711.5, 359.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("23_kjunq")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(44.110085, 97.52889, 56.627342, 44.05909)
+
+[node name="TreeVi" type="Sprite2D" parent="CharactersSitting/4"]
+visible = false
+position = Vector2(1698, 370.00003)
+scale = Vector2(3, 3)
+texture = ExtResource("24_nuq7c")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(50.231316, 75.12213, 45.88298, 89.10321)
+
+[node name="TableCups" type="Node2D" parent="."]
+
+[node name="1Cup" type="Sprite2D" parent="TableCups"]
+unique_name_in_owner = true
+position = Vector2(380, 345)
+texture = ExtResource("25_xr2if")
+region_enabled = true
+region_rect = Rect2(17.66935, 280.89996, 60.120285, 69.78302)
+
+[node name="2Cup" type="Sprite2D" parent="TableCups"]
+unique_name_in_owner = true
+position = Vector2(483, 345)
+texture = ExtResource("25_xr2if")
+region_enabled = true
+region_rect = Rect2(17.66935, 280.89996, 60.120285, 69.78302)
+
+[node name="3Cup" type="Sprite2D" parent="TableCups"]
+unique_name_in_owner = true
+position = Vector2(1429, 345)
+texture = ExtResource("25_xr2if")
+region_enabled = true
+region_rect = Rect2(17.66935, 280.89996, 60.120285, 69.78302)
+
+[node name="4Cup" type="Sprite2D" parent="TableCups"]
+unique_name_in_owner = true
+position = Vector2(1532, 345)
+texture = ExtResource("25_xr2if")
+region_enabled = true
+region_rect = Rect2(17.66935, 280.89996, 60.120285, 69.78302)
