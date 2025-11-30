@@ -15,8 +15,14 @@ universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
 [application]
 
 config/name="a-cozy-cup"
+run/main_scene="uid://cx1xbmf7708wb"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+G="*res://scripts/G.gd"
+S="*res://scripts/S.gd"
 
 [display]
 

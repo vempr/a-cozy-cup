@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cx1xbmf7708wb"]
+[gd_scene load_steps=22 format=3 uid="uid://cx1xbmf7708wb"]
 
 [ext_resource type="Texture2D" uid="uid://0tngnis6nl6r" path="res://assets/aseprite/back.png" id="1_rvrcs"]
+[ext_resource type="Script" uid="uid://b5p34f2j7xf2u" path="res://scripts/back.gd" id="1_teux4"]
 [ext_resource type="Texture2D" uid="uid://bhxboec2v2n6l" path="res://assets/aseprite/cupholder.png" id="2_ymxry"]
 [ext_resource type="Texture2D" uid="uid://ci5bkypa8bfkj" path="res://assets/aseprite/milk.png" id="3_ep5l4"]
 [ext_resource type="Texture2D" uid="uid://cklen7elpvnt7" path="res://assets/aseprite/cups/cocoa-milk.png" id="4_md8u1"]
@@ -9,15 +10,186 @@
 [ext_resource type="Texture2D" uid="uid://bnka68mc45yas" path="res://assets/aseprite/cups/marshmellows.png" id="6_pq8vc"]
 [ext_resource type="Texture2D" uid="uid://co7n61a7kk8o2" path="res://assets/aseprite/cups/milk.png" id="7_teux4"]
 [ext_resource type="Texture2D" uid="uid://bkqt5qyrhc8ka" path="res://assets/aseprite/cups/straw.png" id="8_34pm6"]
-[ext_resource type="Texture2D" uid="uid://cy2jgtcbcofqt" path="res://assets/aseprite/cups/whipped_cream.png" id="9_rro74"]
 [ext_resource type="Texture2D" uid="uid://0fswf4c034de" path="res://assets/aseprite/cup.png" id="11_pq8vc"]
+[ext_resource type="Texture2D" uid="uid://c4gt8a5ffd65" path="res://assets/aseprite/whipping_cream_animation.png" id="11_teux4"]
+[ext_resource type="Texture2D" uid="uid://wxfoyftwwco0" path="res://assets/aseprite/holdable/straw.png" id="13_34pm6"]
+[ext_resource type="Texture2D" uid="uid://cufi8nu8qrtd5" path="res://assets/aseprite/holdable/marshmellows.png" id="14_rro74"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34pm6"]
+atlas = ExtResource("11_teux4")
+region = Rect2(0, 0, 47, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rro74"]
+atlas = ExtResource("11_teux4")
+region = Rect2(47, 0, 47, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkwx5"]
+atlas = ExtResource("11_teux4")
+region = Rect2(94, 0, 47, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3t4g"]
+atlas = ExtResource("11_teux4")
+region = Rect2(141, 0, 47, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22mct"]
+atlas = ExtResource("11_teux4")
+region = Rect2(188, 0, 47, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h87k"]
+atlas = ExtResource("11_teux4")
+region = Rect2(235, 0, 47, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_or545"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34pm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rro74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkwx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3t4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22mct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h87k")
+}],
+"loop": false,
+"name": &"fill",
+"speed": 5.0
+}]
 
 [node name="Back" type="Node2D"]
+script = ExtResource("1_teux4")
 
-[node name="Back" type="Sprite2D" parent="."]
+[node name="Interaction" type="CanvasLayer" parent="."]
+
+[node name="Cups" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 51.0
+offset_top = 730.0
+offset_right = 234.0
+offset_bottom = 1052.0
+
+[node name="Straws" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 257.0
+offset_top = 787.0
+offset_right = 401.0
+offset_bottom = 1054.0
+
+[node name="Cocoa" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 518.0
+offset_top = 830.0
+offset_right = 707.0
+offset_bottom = 1017.0
+
+[node name="Cupholder" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 860.0
+offset_top = 785.0
+offset_right = 1060.0
+offset_bottom = 1052.0
+
+[node name="WhippedCream" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1164.0
+offset_top = 729.0
+offset_right = 1277.0
+offset_bottom = 1058.0
+
+[node name="Milk" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1287.0
+offset_top = 775.0
+offset_right = 1480.0
+offset_bottom = 1056.0
+
+[node name="Marshmellows" type="Button" parent="Interaction"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1486.0
+offset_top = 750.0
+offset_right = 1878.0
+offset_bottom = 1047.0
+
+[node name="BG" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("1_rvrcs")
+
+[node name="Outlines" type="Node2D" parent="."]
+
+[node name="CupOutline" type="Line2D" parent="Outlines"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+points = PackedVector2Array(54, 738, 230, 738, 191, 1045, 97, 1045)
+closed = true
+joint_mode = 2
+
+[node name="StrawsOutline" type="Line2D" parent="Outlines"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(-10, -1)
+points = PackedVector2Array(272, 795, 406, 795, 406, 1049, 274, 1049)
+closed = true
+default_color = Color(0, 1, 0, 1)
+joint_mode = 2
+
+[node name="CocoaOutline" type="Line2D" parent="Outlines"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(-10, -130.06586)
+scale = Vector2(1, 1.1556886)
+points = PackedVector2Array(535, 839, 708, 839, 708, 986, 535, 986)
+closed = true
+joint_mode = 2
+
+[node name="CupholderOutline" type="Line2D" parent="Outlines"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+z_index = 3
+position = Vector2(313.95874, -100.02905)
+scale = Vector2(1.0362692, 1.1616758)
+points = PackedVector2Array(535, 770, 708, 770, 708, 986, 535, 986)
+closed = true
+joint_mode = 2
+
+[node name="WhippedCreamOutline" type="Line2D" parent="Outlines"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+z_index = 3
+position = Vector2(313.95874, -100.02905)
+points = PackedVector2Array(858, 836, 956, 836, 956, 1150, 858, 1150)
+closed = true
+default_color = Color(0, 1, 0, 1)
+joint_mode = 2
+
+[node name="MilkOutline" type="Line2D" parent="Outlines"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+z_index = 3
+position = Vector2(313.95874, -100.02905)
+points = PackedVector2Array(980.041, 883, 1157.041, 883, 1157.041, 1149, 980.041, 1149)
+closed = true
+default_color = Color(0, 0.99607843, 0, 1)
+joint_mode = 2
+
+[node name="MarshmellowsOutline" type="Line2D" parent="Outlines"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
+z_index = 3
+position = Vector2(313.95874, -100.02905)
+points = PackedVector2Array(1175.041, 905, 1560.041, 905, 1492.041, 1142, 1251.0413, 1142.029)
+closed = true
+default_color = Color(0, 0.99607843, 0, 1)
+joint_mode = 2
 
 [node name="Cupholder" type="Sprite2D" parent="."]
 z_index = 2
@@ -28,74 +200,124 @@ region_enabled = true
 region_rect = Rect2(285.98584, 293.78934, 67.67639, 57.406433)
 
 [node name="Milk" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1380, 890)
 
 [node name="Milk" type="Sprite2D" parent="Milk"]
-position = Vector2(1380, 890.00006)
 scale = Vector2(3, 3)
 texture = ExtResource("3_ep5l4")
 region_enabled = true
 region_rect = Rect2(423.99255, 240.52109, 63.658752, 110.32721)
 
 [node name="WhippedCream" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1222, 857)
 
 [node name="WhippingCream" type="Sprite2D" parent="WhippedCream"]
-position = Vector2(1222, 857)
 scale = Vector2(3, 3)
 texture = ExtResource("4_ri4s6")
 region_enabled = true
 region_rect = Rect2(374.3595, 216.67538, 37.431152, 133.72104)
 
-[node name="CupholderCup" type="Node2D" parent="."]
+[node name="Cup" type="Node2D" parent="."]
+unique_name_in_owner = true
+metadata/_edit_group_ = true
 
-[node name="CocoaMilkCup" type="Sprite2D" parent="CupholderCup"]
-visible = false
-position = Vector2(959.00006, 938.00006)
+[node name="CocoaMilkCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+position = Vector2(-1.5, -3)
 scale = Vector2(3, 3)
 texture = ExtResource("4_md8u1")
 region_enabled = true
 region_rect = Rect2(17.86322, 281.00992, 59.239822, 70.03403)
 
-[node name="CocoaCup" type="Sprite2D" parent="CupholderCup"]
-visible = false
-position = Vector2(959.00006, 938.00006)
+[node name="CocoaCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+position = Vector2(-1.5, -3)
 scale = Vector2(3, 3)
 texture = ExtResource("5_ri4s6")
 region_enabled = true
 region_rect = Rect2(18.312984, 280.93317, 58.46964, 69.71512)
 
-[node name="CupMarshmellows" type="Sprite2D" parent="CupholderCup"]
-z_index = 1
-position = Vector2(959, 852)
+[node name="CupMarshmellows" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+z_index = 2
+position = Vector2(-1.500061, -89.00006)
 scale = Vector2(3, 3)
 texture = ExtResource("6_pq8vc")
 region_enabled = true
 region_rect = Rect2(22.40881, 279.21826, 52.383503, 14.552277)
 
-[node name="MilkCup" type="Sprite2D" parent="CupholderCup"]
-position = Vector2(959, 939)
+[node name="MilkCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+position = Vector2(-1.500061, -2.000061)
 scale = Vector2(3, 3)
 texture = ExtResource("7_teux4")
 region_enabled = true
 region_rect = Rect2(17.9404, 280.7751, 58.733673, 70.269135)
 
-[node name="CupStraw" type="Sprite2D" parent="CupholderCup"]
-position = Vector2(999, 824)
+[node name="CupStraw" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(38.49994, -117.00006)
 scale = Vector2(3, 3)
 texture = ExtResource("8_34pm6")
 region_enabled = true
 region_rect = Rect2(54.066704, 262.98627, 16.053604, 29.877563)
 
-[node name="EmptyCup" type="Sprite2D" parent="CupholderCup"]
-visible = false
-position = Vector2(960.00006, 938.00006)
+[node name="EmptyCup" type="Sprite2D" parent="Cup"]
+unique_name_in_owner = true
+position = Vector2(-0.5, -3)
 scale = Vector2(3, 3)
 texture = ExtResource("11_pq8vc")
 region_enabled = true
 region_rect = Rect2(18.065962, 281.59436, 59.165627, 69.38052)
 
-[node name="CupCream" type="Sprite2D" parent="CupholderCup"]
-position = Vector2(960, 823)
+[node name="CupCream" type="AnimatedSprite2D" parent="Cup"]
+unique_name_in_owner = true
+position = Vector2(-0.5, -117)
 scale = Vector2(3, 3)
-texture = ExtResource("9_rro74")
+sprite_frames = SubResource("SpriteFrames_or545")
+animation = &"fill"
+frame = 5
+frame_progress = 1.0
+
+[node name="Straw" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Straw" type="Sprite2D" parent="Straw"]
+scale = Vector2(3, 3)
+texture = ExtResource("13_34pm6")
 region_enabled = true
-region_rect = Rect2(22.937891, 260.4933, 49.28531, 34.496613)
+region_rect = Rect2(33.418602, 263.768, 35.772522, 82.87521)
+
+[node name="Marshmellows" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Marshmellows" type="Sprite2D" parent="Marshmellows"]
+scale = Vector2(3, 3)
+texture = ExtResource("14_rro74")
+region_enabled = true
+region_rect = Rect2(22.433266, 279.72638, 52.146767, 18.817322)
+
+[connection signal="mouse_entered" from="Interaction/Cups" to="." method="_on_cups_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/Cups" to="." method="_on_cups_mouse_exited"]
+[connection signal="pressed" from="Interaction/Cups" to="." method="_on_cups_pressed"]
+[connection signal="mouse_entered" from="Interaction/Straws" to="." method="_on_straws_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/Straws" to="." method="_on_straws_mouse_exited"]
+[connection signal="pressed" from="Interaction/Straws" to="." method="_on_straws_pressed"]
+[connection signal="mouse_entered" from="Interaction/Cocoa" to="." method="_on_cocoa_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/Cocoa" to="." method="_on_cocoa_mouse_exited"]
+[connection signal="pressed" from="Interaction/Cocoa" to="." method="_on_cocoa_pressed"]
+[connection signal="mouse_entered" from="Interaction/Cupholder" to="." method="_on_cupholder_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/Cupholder" to="." method="_on_cupholder_mouse_exited"]
+[connection signal="pressed" from="Interaction/Cupholder" to="." method="_on_cupholder_pressed"]
+[connection signal="mouse_entered" from="Interaction/WhippedCream" to="." method="_on_whipped_cream_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/WhippedCream" to="." method="_on_whipped_cream_mouse_exited"]
+[connection signal="pressed" from="Interaction/WhippedCream" to="." method="_on_whipped_cream_pressed"]
+[connection signal="mouse_entered" from="Interaction/Milk" to="." method="_on_milk_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/Milk" to="." method="_on_milk_mouse_exited"]
+[connection signal="pressed" from="Interaction/Milk" to="." method="_on_milk_pressed"]
+[connection signal="mouse_entered" from="Interaction/Marshmellows" to="." method="_on_marshmellows_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction/Marshmellows" to="." method="_on_marshmellows_mouse_exited"]
+[connection signal="pressed" from="Interaction/Marshmellows" to="." method="_on_marshmellows_pressed"]
