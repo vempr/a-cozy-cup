@@ -121,6 +121,7 @@ func _on_cupholder_pressed() -> void:
 		return
 	
 	if S.holding == G.HOLD.CUP:
+		%Clack.play()
 		S.cup_is_in_cupholder = true
 		S.holding = G.HOLD.NOTHING
 		cup.position = CUPHOLDER_POSITION
@@ -152,6 +153,7 @@ func _on_cupholder_pressed() -> void:
 				S.in_animation = true
 				%APWhippedCream.play("apply")
 				%CupCream.play("fill")
+				%Cream.play(3.0)
 		
 		elif S.holding == G.HOLD.MILK:
 			if S.add_to_cup(G.OPTION.MILK):
@@ -159,6 +161,7 @@ func _on_cupholder_pressed() -> void:
 				%APMilk.play("pour")
 		
 		elif S.holding == G.HOLD.NOTHING:
+			%Clack.play()
 			S.cup_is_in_cupholder = false
 			S.holding = G.HOLD.CUP
 			hide_all_outlines()
@@ -179,6 +182,7 @@ func _on_straws_mouse_exited() -> void:
 
 func _on_straws_pressed() -> void:
 	if S.holding != G.HOLD.CUP && !S.in_animation:
+		%Clack.play()
 		var bef_res = straw.visible
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
@@ -205,6 +209,7 @@ func _on_cocoa_pressed() -> void:
 			S.cup.append(G.OPTION.COCOA)
 			S.in_animation = true
 			%APCocoa.play("pour")
+			%Drink.play(3.0)
 		else:
 			S.holding = G.HOLD.CUP
 
@@ -231,6 +236,7 @@ func _on_whipped_cream_mouse_exited() -> void:
 
 func _on_whipped_cream_pressed() -> void:
 	if S.holding != G.HOLD.CUP && !S.in_animation:
+		%Clack.play()
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
 			if S.holding == G.HOLD.WHIPPED_CREAM:
@@ -251,6 +257,7 @@ func _on_milk_mouse_exited() -> void:
 
 func _on_milk_pressed() -> void:
 	if S.holding != G.HOLD.CUP && !S.in_animation:
+		%Clack.play()
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
 			if S.holding == G.HOLD.MILK:
@@ -271,6 +278,7 @@ func _on_marshmellows_mouse_entered() -> void:
 
 func _on_marshmellows_pressed() -> void:
 	if S.holding != G.HOLD.CUP && !S.in_animation:
+		%Clack.play()
 		var bef_res = marshmellows.visible
 		if S.cup_is_in_cupholder:
 			reset_all_holdables()
@@ -285,13 +293,16 @@ func _on_ap_whipped_cream_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "apply":
 		S.in_animation = false
 		%APWhippedCream.play("RESET")
+		%Cream.stop()
 
 
 func _on_ap_milk_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "pour":
 		%APMilk.play("fall")
+		%Drink.play(3.0)
 	elif anim_name == "fall":
 		%APMilk.play("unpour")
+		%Drink.stop()
 	elif anim_name == "unpour":
 		S.in_animation = false
 		if G.OPTION.COCOA in S.cup:
@@ -308,6 +319,7 @@ func _on_ap_milk_animation_finished(anim_name: StringName) -> void:
 
 func _on_ap_cocoa_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "pour":
+		%Drink.stop()
 		S.in_animation = false
 		if G.OPTION.MILK in S.cup:
 			%CocoaMilkCup.visible = true
@@ -322,6 +334,7 @@ func _on_ap_cocoa_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_done_button_pressed() -> void:
+	%Click.play()
 	%Interaction.visible = false
 	
 	var tween = create_tween()
@@ -336,4 +349,16 @@ func _on_done_button_pressed() -> void:
 func _on_game_switch_to_front() -> void:
 	%DoneButton.visible = true
 	%DoneButton.modulate.a = 1.0
-	_ready()
+	
+	hide_all_outlines()
+	reset_all_holdables()
+	hide_all_options()
+	cup.visible = false
+	
+	%EmptyCup.visible = true
+	%CupOutline.visible = true
+	milk.visible = true
+	whipped_cream.visible = true
+	
+	S.cup_is_in_cupholder = false
+	S.cup_is_in_cocoa = false

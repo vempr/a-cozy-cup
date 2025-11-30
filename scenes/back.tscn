@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cx1xbmf7708wb"]
+[gd_scene load_steps=44 format=3 uid="uid://cx1xbmf7708wb"]
 
 [ext_resource type="Texture2D" uid="uid://0tngnis6nl6r" path="res://assets/aseprite/back.png" id="1_rvrcs"]
 [ext_resource type="Script" uid="uid://b5p34f2j7xf2u" path="res://scripts/back.gd" id="1_teux4"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://c4gt8a5ffd65" path="res://assets/aseprite/whipping_cream_animation.png" id="11_teux4"]
 [ext_resource type="Texture2D" uid="uid://wxfoyftwwco0" path="res://assets/aseprite/holdable/straw.png" id="13_34pm6"]
 [ext_resource type="Texture2D" uid="uid://cufi8nu8qrtd5" path="res://assets/aseprite/holdable/marshmellows.png" id="14_rro74"]
+[ext_resource type="AudioStream" uid="uid://ptnc18bpeb0q" path="res://sound/Clack.mp3" id="21_2ouan"]
+[ext_resource type="AudioStream" uid="uid://dr2cpcophan4d" path="res://sound/Click.mp3" id="22_lathf"]
+[ext_resource type="AudioStream" uid="uid://2q7s3c1hcm6m" path="res://sound/Cream.mp3" id="22_uos8l"]
+[ext_resource type="AudioStream" uid="uid://b828nomsfwgqr" path="res://sound/Drink.mp3" id="23_2ouan"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22mct"]
 bg_color = Color(0, 0, 0, 0.5882353)
@@ -516,7 +520,6 @@ rotation = 3.307399
 
 [node name="WhippedCream" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
 z_index = 2
 position = Vector2(1053, 693)
 metadata/_edit_group_ = true
@@ -634,6 +637,26 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_uos8l")
 }
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="Clack" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("21_2ouan")
+volume_db = -15.0
+
+[node name="Click" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("22_lathf")
+
+[node name="Cream" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("22_uos8l")
+volume_db = -20.0
+
+[node name="Drink" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("23_2ouan")
 
 [connection signal="heads_down" from="." to="HUD" method="_on_back_heads_down"]
 [connection signal="heads_up" from="." to="HUD" method="_on_back_heads_up"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bpd888qe20qut"]
+[gd_scene load_steps=44 format=3 uid="uid://bpd888qe20qut"]
 
 [ext_resource type="Texture2D" uid="uid://biaw4tamn71cm" path="res://assets/aseprite/front.png" id="1_1p0m3"]
 [ext_resource type="Script" uid="uid://drq35ubp80m3j" path="res://scripts/front.gd" id="1_mnnjc"]
@@ -32,6 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://co7n61a7kk8o2" path="res://assets/aseprite/cups/milk.png" id="29_ne8vl"]
 [ext_resource type="Texture2D" uid="uid://bkqt5qyrhc8ka" path="res://assets/aseprite/cups/straw.png" id="30_ryxkl"]
 [ext_resource type="Texture2D" uid="uid://0fswf4c034de" path="res://assets/aseprite/cup.png" id="31_1nwwk"]
+[ext_resource type="AudioStream" uid="uid://dr2cpcophan4d" path="res://sound/Click.mp3" id="33_53dvo"]
+[ext_resource type="AudioStream" uid="uid://c8jcon7w6f0ro" path="res://sound/Whoosh.mp3" id="33_ryxkl"]
+[ext_resource type="AudioStream" uid="uid://bvftwcsxwpqwt" path="res://sound/Thud.mp3" id="34_ryxkl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7va4"]
 bg_color = Color(0, 0, 0, 0.5882353)
@@ -730,6 +733,21 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 40.0
 one_shot = true
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("33_ryxkl")
+
+[node name="Clack" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("34_ryxkl")
+volume_db = -10.0
+
+[node name="Click" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("33_53dvo")
 
 [connection signal="mouse_entered" from="Interaction/CounterCup" to="." method="_on_counter_cup_mouse_entered"]
 [connection signal="mouse_exited" from="Interaction/CounterCup" to="." method="_on_counter_cup_mouse_exited"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://buhrf2hfo6h8m"]
+[gd_scene load_steps=10 format=3 uid="uid://buhrf2hfo6h8m"]
 
 [ext_resource type="Script" uid="uid://b8byecqdgu2qt" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bpd888qe20qut" path="res://scenes/front.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cx1xbmf7708wb" path="res://scenes/back.tscn" id="3_lnu2h"]
+[ext_resource type="AudioStream" uid="uid://dghojw6xokux7" path="res://sound/Lana Works In The Mailroom.mp3" id="4_lbhrr"]
+[ext_resource type="AudioStream" uid="uid://c8jcon7w6f0ro" path="res://sound/Whoosh.mp3" id="5_iywne"]
 
 [sub_resource type="Animation" id="Animation_lbhrr"]
 length = 0.001
@@ -71,6 +73,20 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_iywne")
 }
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("4_lbhrr")
+volume_db = -10.0
+pitch_scale = 0.8
+autoplay = true
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
+stream = ExtResource("5_iywne")
+volume_db = -30.0
+pitch_scale = 0.6
 
 [connection signal="switch_to_back" from="." to="Back" method="_on_game_switch_to_back"]
 [connection signal="switch_to_front" from="." to="Front" method="_on_game_switch_to_front"]

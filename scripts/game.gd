@@ -13,6 +13,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_front_start_order() -> void:
+	%Whoosh.play()
 	%Back.visible = true
 	S.reset_cup()
 	%GameAnimationPlayer.play("away")
@@ -28,5 +29,6 @@ func _on_game_animation_player_animation_finished(anim_name: StringName) -> void
 
 
 func _on_back_order_finished() -> void:
+	%Whoosh.play()
 	%Front.visible = true
 	%GameAnimationPlayer.play("back")

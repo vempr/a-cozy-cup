@@ -88,6 +88,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
+	%Click.play()
 	start_order.emit()
 	await fade_out_controls(order, start_btn)
 	%Dialog.visible = false
@@ -151,6 +152,7 @@ func _on_counter_cup_mouse_exited() -> void:
 
 func _on_counter_cup_pressed() -> void:
 	if deliver_cup:
+		%Clack.play()
 		deliver_cup = false
 		%CounterCupOutline.modulate.a = 0.0
 		%Cup.position = COUNTER_CUP_POSITION
@@ -179,6 +181,7 @@ func _on_ap_cup_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_next_button_pressed() -> void:
+	%Click.play()
 	play_disappearing_animation()
 	sit()
 	await fade_out_controls(feedback, next_btn)
@@ -318,6 +321,10 @@ func sit() -> void:
 		G.CHARACTERS.TREE_VI:
 			character_name = "TreeVi"
 	
+	if S.current_customer == G.CHARACTERS.ALPH:
+		spots[spot_index] = "Visi"
+		return
+	
 	var character_node_path = "CharactersSitting/%d/%s" % [spot_index, character_name]
 	var character_node = get_node(character_node_path)
 	
@@ -351,6 +358,7 @@ func unsit(sidx: int) -> void:
 	
 	var character_node = spots[sidx]
 	if character_node != null:
-		twe.parallel().tween_property(character_node, "modulate:a", 0.0, 1.0)
+		if character_node is not String:
+			twe.parallel().tween_property(character_node, "modulate:a", 0.0, 1.0)
 	
 	spots[sidx] = null
